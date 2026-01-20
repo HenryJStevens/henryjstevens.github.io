@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henry Stevens - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        nav {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .resume-section {
+            padding: 4rem 0;
+            background: #fff;
+            margin: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .resume-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: 80vh;
+            border: none;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .resume-section {
+                margin: 1rem;
+                padding: 2rem 0;
+            }
+
+            .pdf-container {
+                height: 60vh;
+            }
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1><a href="personal-website.html" style="text-decoration: none; color: inherit;">Henry Stevens</a></h1>
+            <ul>
+                <li><a href="personal-website.html">Home</a></li>
+                <li><a href="personal-website.html?scroll=projects">Projects</a></li>
+                <li><a href="resume.html">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="resume-section">
+        <div class="container">
+            <div class="resume-header">
+                <h1>My Resume</h1>
+                <p>View or download my professional resume</p>
+            </div>
+            <iframe src="HenryStevens_resume.pdf" class="pdf-container" title="Henry Stevens Resume"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Henry Stevens. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/HenryJStevens">GitHub</a>
+                <a href="https://www.linkedin.com/in/henryjstevens/">LinkedIn</a>
+                <a href="mailto:henry.stevens@colorado.edu">Email</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

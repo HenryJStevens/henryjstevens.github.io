@@ -154,12 +154,20 @@
         .project-image {
             width: 100%;
             height: 300px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
             color: white;
+        }
+
+        .project-image video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: opacity 0.3s ease;
         }
 
         .project-content {
@@ -227,9 +235,24 @@
             display: block;
         }
 
-        .back-button {
-            display: inline-block;
+        .project-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-button {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .gallery-button {
             color: #0066cc;
             text-decoration: none;
             font-weight: 500;
@@ -244,16 +267,23 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             color: #1a1a1a;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .project-detail .project-tags {
             margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .project-hero {
             width: 100%;
+            max-width: 800px;
             height: 500px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #fff;
             border-radius: 12px;
             margin-bottom: 3rem;
             display: flex;
@@ -261,6 +291,15 @@
             justify-content: center;
             color: white;
             font-size: 1.5rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-hero video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
         }
 
         .project-description {
@@ -268,6 +307,18 @@
             line-height: 1.8;
             color: #555;
             margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-description p {
+            margin-bottom: 1.5rem;
+            text-indent: 2rem;
+        }
+
+        .project-description p:first-child {
+            text-indent: 0;
         }
 
         .project-gallery {
@@ -275,17 +326,46 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gallery-header {
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .gallery-item {
             width: 100%;
             height: 300px;
+            aspect-ratio: 1; /* Make items square */
             background: #f0f0f0;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #999;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            overflow: hidden; /* Ensure images don't overflow rounded corners */
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-item img {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
@@ -319,15 +399,127 @@
                 height: 300px;
             }
         }
+
+        /* Lightbox Styles */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content img {
+            max-width: 800px;
+            max-height: 600px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            font-size: 30px;
+            padding: 15px;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.3s, transform 0.2s;
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-close {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
+                font-size: 20px;
+                padding: 10px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
     </style>
 </head>
 <body>
     <nav>
         <div class="container">
-            <h1>Your Name</h1>
+            <h1><a href="#home" onclick="showHome()" style="text-decoration: none; color: inherit;">Henry Stevens</a></h1>
             <ul>
                 <li><a href="#home" onclick="showHome()">Home</a></li>
-                <li><a href="#projects" onclick="showHome()">Projects</a></li>
+                <li><a href="#projects" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">Projects</a></li>
+                <li><a href="resume.html">Resume</a></li>
             </ul>
         </div>
     </nav>
@@ -338,12 +530,12 @@
             <div class="container">
                 <div class="home-content">
                     <div class="home-text">
-                        <h2>Hi, I'm [Your Name]</h2>
-                        <p>A brief introduction about yourself. What you do, what you're passionate about, and what drives you. Keep it concise but personal.</p>
-                        <p>Share a bit more detail here about your background, interests, or what you're currently working on.</p>
+                        <h2>Hi, I'm Henry</h2>
+                        <p>I'm a <b>Mechanical Engineering</b> student in my senior year at the <b>University of Colorado Boulder</b>. I intend to pursue a master's degree in Mechanical Engineering with emphases in <b>automation</b> and <b>biomedical engineering</b>.</p>
+                        <p>My professional background includes experience in biomechanics research, biomedical device development, and extensive CAD work. </p>
                     </div>
                     <div class="profile-image">
-                        Your Photo Here
+                        <img src="profilephoto.jpg" alt="Profile Photo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -359,23 +551,30 @@
                     
                     <div class="projects-grid">
                         <a href="#" class="project-card" onclick="showProject('project1'); return false;">
-                            <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                Project Image 1
+                            <div class="project-image">
+                                <video muted loop playsinline>
+                                    <source src="MechProject/coverVideo.mp4" type="video/mp4">
+                                    Your browser doesn't support video.
+                                </video>
                             </div>
                             <div class="project-content">
-                                <h3>Project Title 1</h3>
-                                <p>A brief, engaging description of this project. Just enough to hook the reader and make them want to learn more.</p>
+                                <h3>Autonomous Racing Robot</h3>
+                                <p>A robot designed to autonomously navigate a racetrack. Fully designed, manufactured, and programmed in one semester with a team of six engineers. </p>
                                 <div class="project-tags">
                                     <span class="tag">Python</span>
-                                    <span class="tag">React</span>
-                                    <span class="tag">API</span>
+                                    <span class="tag">Rapid Prototyping</span>
+                                    <span class="tag">Sensor Integration</span>
+                                    <span class="tag">Raspberry Pi</span>
+                                    <span class="tag">Arduino</span>
+                                    <span class="tag">Motor Control</span>
+                                    <span class="tag">Power Management</span>
                                 </div>
                             </div>
                         </a>
 
                         <a href="#" class="project-card" onclick="showProject('project2'); return false;">
-                            <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                                Project Image 2
+                            <div class="project-image">
+                                <img src="NerfGunProject/coverImage.png" alt="Project 2 Cover Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                             </div>
                             <div class="project-content">
                                 <h3>Project Title 2</h3>
@@ -409,9 +608,12 @@
     <!-- Project Detail Pages -->
     <div id="project1" class="project-detail">
         <div class="container">
-            <a href="#" class="back-button" onclick="showHome(); return false;">← Back to Projects</a>
+            <div class="project-navigation">
+                <a href="#" class="back-button" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="gallery-button" onclick="const header = document.querySelector('#project1 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+            </div>
             
-            <h2>Project Title 1</h2>
+            <h2>Autonomous Racing Robot</h2>
             <div class="project-tags">
                 <span class="tag">Python</span>
                 <span class="tag">React</span>
@@ -419,28 +621,54 @@
             </div>
 
             <div class="project-hero">
-                Main Project Image
+                <video muted loop playsinline controls autoplay>
+                    <source src="MechProject/coverVideo.mp4" type="video/mp4">
+                    Your browser doesn't support video.
+                </video>
             </div>
 
             <div class="project-description">
-                <p>This is where you put the full, detailed description of your project. Talk about the problem you were trying to solve, your approach, the challenges you faced, and how you overcame them.</p>
-                <p>You can add multiple paragraphs here. Discuss the technologies you used, why you chose them, and what you learned from the experience. Make it personal and specific.</p>
-                <p>Include metrics or outcomes if relevant - did it improve efficiency by X%? Did Y number of people use it? What was the impact?</p>
+                <p>
+                    This project was completed as part of <strong>Introduction to Mechatronics and Robotics</strong>, a one-semester, lab-based course in which teams were given broad autonomy to design and build an autonomous robot for a competition. The project was developed under a strict budget of <strong>less than $50 per team member</strong>, requiring careful design tradeoffs and component selection.
+                </p>
+                 <p>
+                    The robot was designed to autonomously navigate a closed-loop course, traverse ramps and a gravel pit, avoid obstacles, and collect and sort colored dice. The system was built around modular subsystems, including a tank-tread drive system for reliable traction, a custom dice collection mechanism, and a servo-actuated sorting system. Most mechanical components were designed in SolidWorks and fabricated using a combination of laser-cut acrylic and 3D-printed PLA.
+                </p>
+                <p>
+                    Control was distributed across multiple microcontrollers. An Arduino Mega handled real-time motor control and obstacle avoidance, while a Raspberry Pi processed vision data for dice detection and higher-level decision making. A late-stage shift from time-of-flight sensors to calibrated infrared sensors significantly improved responsiveness and reliability, reinforcing the importance of sensor selection and system-level tradeoffs in autonomous robotics.
+                </p>
             </div>
 
-            <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
+            <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
-                <div class="gallery-item">Screenshot 1</div>
-                <div class="gallery-item">Screenshot 2</div>
-                <div class="gallery-item">Screenshot 3</div>
-                <div class="gallery-item">Screenshot 4</div>
+                <div class="gallery-item">
+                    <img src="MechProject/closeupImage.jpg" alt="Completed robot" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="MechProject/coverImage.jpg" alt="Still of robot during competition" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="MechProject/robotFullCad.png" alt="CAD model of robot" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="MechProject/collectionCAD.png" alt="Collection system CAD" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="MechProject/circuitDiagram.png" alt="Robot circuit diagram" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+                <div class="gallery-item">
+                    <img src="MechProject/courseSchematic.png" alt="Course Schematic" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
             </div>
         </div>
     </div>
 
     <div id="project2" class="project-detail">
         <div class="container">
-            <a href="#" class="back-button" onclick="showHome(); return false;">← Back to Projects</a>
+            <div class="project-navigation">
+                <a href="#" class="back-button" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="gallery-button" onclick="const header = document.querySelector('#project2 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+            </div>
             
             <h2>Project Title 2</h2>
             <div class="project-tags">
@@ -449,14 +677,14 @@
             </div>
 
             <div class="project-hero">
-                Main Project Image
+                <img src="NerfGunProject/coverImage.png" alt="Project 2 Main Image" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
             </div>
 
             <div class="project-description">
                 <p>Detailed description for project 2...</p>
             </div>
 
-            <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
+            <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
                 <div class="gallery-item">Screenshot 1</div>
                 <div class="gallery-item">Screenshot 2</div>
@@ -466,7 +694,10 @@
 
     <div id="project3" class="project-detail">
         <div class="container">
-            <a href="#" class="back-button" onclick="showHome(); return false;">← Back to Projects</a>
+            <div class="project-navigation">
+                <a href="#" class="back-button" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="gallery-button" onclick="const header = document.querySelector('#project3 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+            </div>
             
             <h2>Project Title 3</h2>
             <div class="project-tags">
@@ -482,7 +713,7 @@
                 <p>Detailed description for project 3...</p>
             </div>
 
-            <h3 style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
+            <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
                 <div class="gallery-item">Screenshot 1</div>
                 <div class="gallery-item">Screenshot 2</div>
@@ -493,14 +724,24 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Your Name. All rights reserved.</p>
+            <p>&copy; 2026 Henry Stevens. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://github.com/yourusername">GitHub</a>
-                <a href="https://linkedin.com/in/yourusername">LinkedIn</a>
-                <a href="mailto:your.email@example.com">Email</a>
+                <a href="https://github.com/HenryJStevens">GitHub</a>
+                <a href="https://www.linkedin.com/in/henryjstevens/">LinkedIn</a>
+                <a href="mailto:henry.stevens@colorado.edu">Email</a>
             </div>
         </div>
     </footer>
+
+    <!-- Lightbox Overlay -->
+    <div id="lightbox" class="lightbox-overlay">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-prev" onclick="changeImage(-1)">&#10094;</button>
+        <button class="lightbox-next" onclick="changeImage(1)">&#10095;</button>
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="">
+        </div>
+    </div>
 
     <script>
         function showProject(projectId) {
@@ -510,6 +751,16 @@
             });
             document.getElementById(projectId).classList.add('active');
             window.scrollTo(0, 0);
+            // Update URL hash for bookmarkable/reloadable state
+            window.location.hash = projectId;
+            
+            // Autoplay video for project1
+            if (projectId === 'project1') {
+                const video = document.querySelector('#project1 video');
+                if (video) {
+                    video.play().catch(e => console.log('Video autoplay failed:', e));
+                }
+            }
         }
 
         function showHome() {
@@ -517,7 +768,173 @@
             document.querySelectorAll('.project-detail').forEach(el => {
                 el.classList.remove('active');
             });
+            // Clear URL hash when returning home
+            if (window.location.hash) {
+                window.history.replaceState(null, null, window.location.pathname);
+            }
         }
+
+        // Check URL hash on page load and show appropriate project
+        function checkUrlHash() {
+            const hash = window.location.hash.substring(1); // Remove the '#'
+            if (hash && hash.startsWith('project')) {
+                const projectElement = document.getElementById(hash);
+                if (projectElement) {
+                    showProject(hash);
+                }
+            }
+            
+            // Check for scroll query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const scrollTo = urlParams.get('scroll');
+            if (scrollTo === 'projects') {
+                // Scroll to projects section
+                setTimeout(() => {
+                    const projectsSection = document.getElementById('projects');
+                    if (projectsSection) {
+                        projectsSection.scrollIntoView({behavior: 'smooth'});
+                    }
+                }, 100);
+                // Clean up the URL by removing the query parameter
+                window.history.replaceState(null, null, window.location.pathname + window.location.hash);
+            }
+        }
+
+        // Video hover functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectImage = document.querySelector('.project-image');
+            const video = document.querySelector('.project-image video');
+            
+            if (projectImage && video) {
+                projectImage.addEventListener('mouseenter', function() {
+                    video.play().catch(function(error) {
+                        console.log('Video play failed:', error);
+                    });
+                });
+                
+                projectImage.addEventListener('mouseleave', function() {
+                    video.pause();
+                    video.currentTime = 0; // Reset to beginning
+                });
+            }
+
+            // Sync project tags from cards to detail pages
+            syncProjectTags();
+
+            // Check URL hash and show appropriate project on page load
+            checkUrlHash();
+        });
+
+        // Handle browser back/forward navigation
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && hash.startsWith('project')) {
+                const projectElement = document.getElementById(hash);
+                if (projectElement) {
+                    showProject(hash);
+                }
+            } else {
+                // If hash is cleared or invalid, show home
+                showHome();
+            }
+        });
+
+        function syncProjectTags() {
+            // Get all project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach((card, index) => {
+                // Find the tags in this project card
+                const cardTags = card.querySelector('.project-tags');
+                if (cardTags) {
+                    // Find the corresponding project detail page
+                    const projectDetail = document.getElementById(`project${index + 1}`);
+                    if (projectDetail) {
+                        // Find the tags section in the detail page
+                        const detailTags = projectDetail.querySelector('.project-tags');
+                        if (detailTags) {
+                            // Clear existing tags and copy from card
+                            detailTags.innerHTML = cardTags.innerHTML;
+                        }
+                    }
+                }
+            });
+        }
+
+        // Lightbox functionality
+        let currentImageIndex = 0;
+        let galleryImages = [];
+
+        function openLightbox(clickedImage) {
+            const gallery = clickedImage.closest('.project-gallery');
+            galleryImages = Array.from(gallery.querySelectorAll('.gallery-item img')).filter(img => img.src);
+            
+            if (galleryImages.length === 0) return;
+            
+            currentImageIndex = galleryImages.indexOf(clickedImage);
+            if (currentImageIndex === -1) currentImageIndex = 0;
+            
+            updateLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = galleryImages.length - 1;
+            } else if (currentImageIndex >= galleryImages.length) {
+                currentImageIndex = 0;
+            }
+            updateLightboxImage();
+        }
+
+        function updateLightboxImage() {
+            const lightboxImg = document.getElementById('lightbox-image');
+            lightboxImg.src = galleryImages[currentImageIndex].src;
+            lightboxImg.alt = galleryImages[currentImageIndex].alt;
+        }
+
+        // Initialize gallery click handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // ... existing code ...
+
+            // Add click handlers to gallery images
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.gallery-item img')) {
+                    openLightbox(e.target);
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (document.getElementById('lightbox').classList.contains('active')) {
+                    switch(e.key) {
+                        case 'Escape':
+                            closeLightbox();
+                            break;
+                        case 'ArrowLeft':
+                            changeImage(-1);
+                            break;
+                        case 'ArrowRight':
+                            changeImage(1);
+                            break;
+                    }
+                }
+            });
+
+            // Close lightbox when clicking outside the image
+            document.getElementById('lightbox').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeLightbox();
+                }
+            });
+        });
     </script>
 </body>
 </html>
