@@ -908,6 +908,10 @@
                     return;
                 }
 
+                let touchHoldTimer = null;
+                let isHolding = false;
+
+                // Desktop: hover to play
                 projectImage.addEventListener('mouseenter', function() {
                     video.play().catch(function(error) {
                         console.log('Video play failed:', error);
@@ -917,6 +921,35 @@
                 projectImage.addEventListener('mouseleave', function() {
                     video.pause();
                     video.currentTime = 0; // Reset to beginning
+                });
+
+                // Mobile: touch and hold to play
+                projectImage.addEventListener('touchstart', function(e) {
+                    isHolding = true;
+                    touchHoldTimer = setTimeout(function() {
+                        if (isHolding) {
+                            video.play().catch(function(error) {
+                                console.log('Video play failed:', error);
+                            });
+                        }
+                    }, 200); // Start playing after 200ms hold
+                });
+
+                projectImage.addEventListener('touchend', function(e) {
+                    isHolding = false;
+                    if (touchHoldTimer) {
+                        clearTimeout(touchHoldTimer);
+                    }
+                    video.pause();
+                    video.currentTime = 0; // Reset to beginning
+                });
+
+                projectImage.addEventListener('touchmove', function(e) {
+                    // Cancel if user is scrolling
+                    isHolding = false;
+                    if (touchHoldTimer) {
+                        clearTimeout(touchHoldTimer);
+                    }
                 });
             });
 
