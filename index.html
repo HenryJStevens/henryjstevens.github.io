@@ -246,21 +246,14 @@
             margin-right: auto;
         }
 
-        .back-button {
+        .project-nav-link {
             color: #0066cc;
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
         }
 
-        .gallery-button {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        .back-button:hover {
+        .project-nav-link:hover {
             text-decoration: underline;
         }
 
@@ -324,7 +317,7 @@
 
         .project-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-bottom: 3rem;
             max-width: 800px;
@@ -343,8 +336,7 @@
 
         .gallery-item {
             width: 100%;
-            height: 300px;
-            aspect-ratio: 1; /* Make items square */
+            aspect-ratio: 1;
             background: #f0f0f0;
             border-radius: 8px;
             display: flex;
@@ -398,6 +390,11 @@
 
             .project-hero {
                 height: 300px;
+            }
+
+            .project-gallery {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
 
@@ -551,7 +548,7 @@
                     </div>
                     
                     <div class="projects-grid">
-                        <a href="#" class="project-card" onclick="showProject('project1'); return false;">
+                        <a href="#project1" class="project-card">
                             <div class="project-image">
                                 <video muted loop playsinline>
                                     <source src="MechProject/coverVideo.mp4" type="video/mp4">
@@ -573,7 +570,7 @@
                             </div>
                         </a>
 
-                        <a href="#" class="project-card" onclick="showProject('project2'); return false;">
+                        <a href="#project2" class="project-card">
                             <div class="project-image">
                                 <img src="NerfGunProject/coverImage.png" alt="Project 2 Cover Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                             </div>
@@ -587,16 +584,42 @@
                             </div>
                         </a>
 
-                        <a href="#" class="project-card" onclick="showProject('project3'); return false;">
+                        <a href="#project3" class="project-card">
                             <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                                 Project Image 3
                             </div>
                             <div class="project-content">
                                 <h3>Project Title 3</h3>
-                                <p>Your third project in a nutshell. Make each description unique and specific to what makes this project special.</p>
+                                <p>Your third project in a nutshellasdfasdfa. Make each description unique and specific to what makes this project special.</p>
                                 <div class="project-tags">
                                     <span class="tag">Data Science</span>
                                     <span class="tag">Machine Learning</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#project4" class="project-card">
+                            <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                Project Image 4
+                            </div>
+                            <div class="project-content">
+                                <h3>Project Title 4</h3>
+                                <p>Your fourth project summary. What problem does it solve? Why is it interesting?</p>
+                                <div class="project-tags">
+                                    <span class="tag">Coming Soon</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#project5" class="project-card">
+                            <div class="project-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                                Project Image 5
+                            </div>
+                            <div class="project-content">
+                                <h3>Project Title 5</h3>
+                                <p>Your fifth project summary. What problem does it solve? Why is it interesting?</p>
+                                <div class="project-tags">
+                                    <span class="tag">Coming Soon</span>
                                 </div>
                             </div>
                         </a>
@@ -610,16 +633,12 @@
     <div id="project1" class="project-detail">
         <div class="container">
             <div class="project-navigation">
-                <a href="#" class="back-button" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
-                <a href="#" class="gallery-button" onclick="const header = document.querySelector('#project1 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project1 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
             </div>
             
             <h2>Autonomous Racing Robot</h2>
-            <div class="project-tags">
-                <span class="tag">Python</span>
-                <span class="tag">React</span>
-                <span class="tag">API</span>
-            </div>
+            <div class="project-tags"></div>
 
             <div class="project-hero">
                 <video muted loop playsinline controls autoplay>
@@ -667,15 +686,12 @@
     <div id="project2" class="project-detail">
         <div class="container">
             <div class="project-navigation">
-                <a href="#" class="back-button" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
-                <a href="#" class="gallery-button" onclick="const header = document.querySelector('#project2 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project2 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
             </div>
             
             <h2>Nerf Gun Reverse Engineering and DFM Optimization</h2>
-            <div class="project-tags">
-                <span class="tag">JavaScript</span>
-                <span class="tag">Node.js</span>
-            </div>
+            <div class="project-tags"></div>
 
             <div class="project-hero">
                 <img src="NerfGunProject/coverImage.png" alt="Project 2 Main Image" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
@@ -696,15 +712,12 @@
     <div id="project3" class="project-detail">
         <div class="container">
             <div class="project-navigation">
-                <a href="#" class="back-button" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
-                <a href="#" class="gallery-button" onclick="const header = document.querySelector('#project3 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project3 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
             </div>
             
             <h2>Project Title 3</h2>
-            <div class="project-tags">
-                <span class="tag">Data Science</span>
-                <span class="tag">Machine Learning</span>
-            </div>
+            <div class="project-tags"></div>
 
             <div class="project-hero">
                 Main Project Image
@@ -719,6 +732,58 @@
                 <div class="gallery-item">Screenshot 1</div>
                 <div class="gallery-item">Screenshot 2</div>
                 <div class="gallery-item">Screenshot 3</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="project4" class="project-detail">
+        <div class="container">
+            <div class="project-navigation">
+                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project4 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+            </div>
+            
+            <h2>Project Title 4</h2>
+            <div class="project-tags"></div>
+
+            <div class="project-hero">
+                Main Project Image
+            </div>
+
+            <div class="project-description">
+                <p>Detailed description for project 4...</p>
+            </div>
+
+            <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
+            <div class="project-gallery">
+                <div class="gallery-item">Screenshot 1</div>
+                <div class="gallery-item">Screenshot 2</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="project5" class="project-detail">
+        <div class="container">
+            <div class="project-navigation">
+                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project5 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+            </div>
+            
+            <h2>Project Title 5</h2>
+            <div class="project-tags"></div>
+
+            <div class="project-hero">
+                Main Project Image
+            </div>
+
+            <div class="project-description">
+                <p>Detailed description for project 5...</p>
+            </div>
+
+            <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
+            <div class="project-gallery">
+                <div class="gallery-item">Screenshot 1</div>
+                <div class="gallery-item">Screenshot 2</div>
             </div>
         </div>
     </div>
@@ -745,6 +810,40 @@
     </div>
 
     <script>
+        // Single source of truth for project data
+        const projectData = {
+            project1: {
+                tags: ['Python', 'Rapid Prototyping', 'Sensor Integration', 'Raspberry Pi', 'Arduino', 'Motor Control', 'Power Management']
+            },
+            project2: {
+                tags: ['JavaScript', 'Node.js']
+            },
+            project3: {
+                tags: ['Data Science', 'Machine Learning']
+            },
+            project4: {
+                tags: ['Coming Soon']
+            },
+            project5: {
+                tags: ['Coming Soon']
+            }
+        };
+
+        function renderProjectTags(projectId) {
+            const tags = projectData[projectId]?.tags;
+            if (!tags) return;
+
+            const tagElements = tags
+                .map(tag => `<span class="tag">${tag}</span>`)
+                .join('');
+
+            // Update tags in project detail page
+            const detailTags = document.querySelector(`#${projectId} .project-tags`);
+            if (detailTags) {
+                detailTags.innerHTML = tagElements;
+            }
+        }
+
         function showProject(projectId) {
             document.getElementById('main-page').style.display = 'none';
             document.querySelectorAll('.project-detail').forEach(el => {
@@ -752,8 +851,7 @@
             });
             document.getElementById(projectId).classList.add('active');
             window.scrollTo(0, 0);
-            // Update URL hash for bookmarkable/reloadable state
-            window.location.hash = projectId;
+            renderProjectTags(projectId);
             
             // Autoplay video for project1
             if (projectId === 'project1') {
@@ -803,24 +901,23 @@
 
         // Video hover functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const projectImage = document.querySelector('.project-image');
-            const video = document.querySelector('.project-image video');
-            
-            if (projectImage && video) {
+            document.querySelectorAll('.project-image').forEach(projectImage => {
+                const video = projectImage.querySelector('video');
+                if (!video) {
+                    return;
+                }
+
                 projectImage.addEventListener('mouseenter', function() {
                     video.play().catch(function(error) {
                         console.log('Video play failed:', error);
                     });
                 });
-                
+
                 projectImage.addEventListener('mouseleave', function() {
                     video.pause();
                     video.currentTime = 0; // Reset to beginning
                 });
-            }
-
-            // Sync project tags from cards to detail pages
-            syncProjectTags();
+            });
 
             // Check URL hash and show appropriate project on page load
             checkUrlHash();
@@ -840,34 +937,15 @@
             }
         });
 
-        function syncProjectTags() {
-            // Get all project cards
-            const projectCards = document.querySelectorAll('.project-card');
-            
-            projectCards.forEach((card, index) => {
-                // Find the tags in this project card
-                const cardTags = card.querySelector('.project-tags');
-                if (cardTags) {
-                    // Find the corresponding project detail page
-                    const projectDetail = document.getElementById(`project${index + 1}`);
-                    if (projectDetail) {
-                        // Find the tags section in the detail page
-                        const detailTags = projectDetail.querySelector('.project-tags');
-                        if (detailTags) {
-                            // Clear existing tags and copy from card
-                            detailTags.innerHTML = cardTags.innerHTML;
-                        }
-                    }
-                }
-            });
-        }
-
         // Lightbox functionality
         let currentImageIndex = 0;
         let galleryImages = [];
 
         function openLightbox(clickedImage) {
             const gallery = clickedImage.closest('.project-gallery');
+            if (!gallery) {
+                return;
+            }
             galleryImages = Array.from(gallery.querySelectorAll('.gallery-item img')).filter(img => img.src);
             
             if (galleryImages.length === 0) return;
