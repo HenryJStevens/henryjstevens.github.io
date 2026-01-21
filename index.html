@@ -131,7 +131,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2.5rem;
             width: 100%;
         }
@@ -155,21 +155,29 @@
 
         .project-image {
             width: 100%;
-            height: 300px;
-            background: #fff;
+            aspect-ratio: 16 / 9;
+            background: #f5f5f5;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
             color: white;
+            overflow: hidden;
         }
 
         .project-image video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             border-radius: 12px;
             transition: opacity 0.3s ease;
+            background: #000;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .project-content {
@@ -362,6 +370,29 @@
             transform: scale(1.05);
         }
 
+        /* Captioned Gallery Styles - All Projects */
+        .project-detail .gallery-item {
+            aspect-ratio: auto;
+            background: transparent;
+            display: block;
+            overflow: visible;
+        }
+
+        .project-detail .gallery-thumb {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #f0f0f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .project-detail .gallery-item figcaption {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
         @media (max-width: 768px) {
             .home-content {
                 grid-template-columns: 1fr;
@@ -422,18 +453,30 @@
             max-height: 90vh;
             position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: 1.5rem;
         }
 
         .lightbox-content img {
             max-width: 90vw;
-            max-height: 85vh;
+            max-height: 75vh;
             width: auto;
             height: auto;
             object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-caption {
+            position: relative;
+            color: #fff;
+            font-size: 1.1rem;
+            max-width: 800px;
+            width: 90vw;
+            text-align: center;
+            line-height: 1.4;
         }
 
         .lightbox-close {
@@ -577,17 +620,21 @@
                             </div>
                             <div class="project-content">
                                 <h3>Nerf Gun Reverse Engineering and DFM Optimization</h3>
-                                <p>Another compelling project summary. What problem does it solve? Why is it interesting?</p>
+                                <p>Reverse engineering and redesign of a consumer product to identify manufacturing and assembly inefficiencies. Applied DFA metrics and economic analysis to implement targeted design changes and produce a complete, dimensioned drawing package.</p>
                                 <div class="project-tags">
-                                    <span class="tag">JavaScript</span>
-                                    <span class="tag">Node.js</span>
+                                    <span class="tag">Design for Assembly</span>
+                                    <span class="tag">Reverse Engineering</span>
+                                    <span class="tag">CAD</span>
+                                    <span class="tag">Mechanical Design</span>
+                                    <span class="tag">Technical Drawing</span>
+                                    <span class="tag">Engineering Economics</span>
                                 </div>
                             </div>
                         </a>
 
                         <a href="#project3" class="project-card">
-                            <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                                Project Image 3
+                            <div class="project-image">
+                                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Team Photo" onerror="this.onerror=null; this.src='MechProject/coverImage.jpg';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                             </div>
                             <div class="project-content">
                                 <h3>Project Title 3</h3>
@@ -662,24 +709,42 @@
 
             <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
-                <div class="gallery-item">
-                    <img src="MechProject/closeupImage.jpg" alt="Completed robot" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                </div>
-                <div class="gallery-item">
-                    <img src="MechProject/coverImage.jpg" alt="Still of robot during competition" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                </div>
-                <div class="gallery-item">
-                    <img src="MechProject/robotFullCad.png" alt="CAD model of robot" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                </div>
-                <div class="gallery-item">
-                    <img src="MechProject/collectionCAD.png" alt="  Collection system CAD" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                </div>
-                <div class="gallery-item">
-                    <img src="MechProject/circuitDiagram.png" alt="Robot circuit diagram" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                </div>
-                <div class="gallery-item">
-                    <img src="MechProject/courseSchematic.png" alt="Course Schematic" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                </div>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="MechProject/closeupImage.jpg" alt="Completed robot" data-caption="Here is a closeup image of the robot during the competition." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Closeup still of completed robot</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="MechProject/coverImage.jpg" alt="Still of robot during competition" data-caption="The course included a shortcut, if your robot was brave enough to take the leap :)" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Robot attempting the jump obstacle</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="MechProject/robotFullCad.png" alt="CAD model of robot" data-caption="We desiged the robot's mechanical systems in SolidWorks prior to manufacuturing." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>CAD model of robot</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="MechProject/collectionCAD.png" alt="Collection system CAD" data-caption="The competition included collecting and sorting colored dice. Our mechanism for this included a spinning brush, and a 'dustpan' that could be retracted when crossing the gravel obstacle." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Collection system CAD</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="MechProject/circuitDiagram.png" alt="Robot circuit diagram" data-caption="We designed the robot's electrical system with detailed circuit diagrams to ensure reliable implementation." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Robot circuit diagram</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="MechProject/courseSchematic.png" alt="Course Schematic" data-caption="This is the course schematic provided by the instructor, showing the dimensions and obstacles to design around." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Course Schematic</figcaption>
+                </figure>
             </div>
         </div>
     </div>
@@ -699,13 +764,49 @@
             </div>
 
             <div class="project-description">
-                <p>Detailed description for project 2...</p>
+                <p>This project focused on the reverse engineering and redesign of a consumer product to identify inefficiencies in manufacturing and assembly and implement targeted design-for-assembly (DFA) improvements. The work emphasized a structured workflow that moved from system-level understanding to part-level analysis, allowing design changes to be driven by measurable assembly and economic metrics rather than intuition alone.</p>
+                <p>The process began with a complete teardown and decomposition of the product into functional subsystems, supported by black box and glass box diagrams to map inputs, outputs, and internal energy transfer. Fishbone diagrams were used to organize parts and subassemblies, after which the entire product was reconstructed as a detailed 3D CAD model. A complete engineering drawing package was generated, including fully dimensioned drawings for every component, enabling clear communication of design intent and manufacturability.</p>
+                <p>Using this model, DFA metrics such as part count, part variety, assembly difficulty, and error risk were evaluated to identify the highest-impact opportunities for improvement. Design changes were then implemented to directly target these metrics, including error-proofing critical assemblies, simplifying the firing mechanism to reduce assembly steps and tolerance stack-up, and standardizing fasteners to reduce part variety and handling complexity. The resulting designs demonstrated clear improvements in assembly efficiency and projected manufacturing cost, illustrating how data-driven DFA analysis can guide effective mechanical design decisions.</p>
             </div>
 
             <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
-                <div class="gallery-item">Screenshot 1</div>
-                <div class="gallery-item">Screenshot 2</div>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="NerfGunProject/internalsRendering.png" alt="Nerf Gun Internals Rendering" data-caption="This image demonstrates what the internal mechanism of the Nerf Gun looks like." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Nerf Gun Internals Rendering</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="NerfGunProject/coverImage.png" alt="Exploded View Rendering" data-caption="This image shows an exploded view rendering of the Nerf Gun." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Exploded View Rendering</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="NerfGunProject/assemblyDrawing.png" alt="Assembly drawing" data-caption="This is an excerpt from the drawing package we produced to comunicate the Nerf gun design. The numbers refer to specific components in the Bill of Materials" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Exploded Assembly Drawing</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="NerfGunProject/assemblyRedesign.png" alt="Firing mechanism" data-caption="In the original assembly process, the assembler must hold a spring under tension while assembling the firing mechanism. Our redesign allows full assembly of the subsystem before tensioning the spring." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Firing Mechanism Redesign</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="NerfGunProject/leversRedesign.png" alt="Firing mechanism" data-caption="Originally, the two levers that transfer force from the trigger to the firing mechanism could easily be installed uside down. The redesign added material to make the incorrect installation impossible." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Trigger Mechanism Redesign</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="NerfGunProject/DFAanalysis.png" alt="DFA analysis" data-caption="We performed a DFA analysis to identify areas for improvement, and this figure illustrates the improvement in those metrics." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>DFA Analysis After Redesigns</figcaption>
+                </figure>
             </div>
         </div>
     </div>
@@ -717,11 +818,11 @@
                 <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project3 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
             </div>
             
-            <h2>Project Title 3</h2>
+            <h2>Hologic Inc. Senior Design Project</h2>
             <div class="project-tags"></div>
 
             <div class="project-hero">
-                Main Project Image
+                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Team Photo" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
             </div>
 
             <div class="project-description">
@@ -730,9 +831,18 @@
 
             <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
-                <div class="gallery-item">Screenshot 1</div>
-                <div class="gallery-item">Screenshot 2</div>
-                <div class="gallery-item">Screenshot 3</div>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">Screenshot 1</div>
+                    <figcaption>Caption 1</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">Screenshot 2</div>
+                    <figcaption>Caption 2</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">Screenshot 3</div>
+                    <figcaption>Caption 3</figcaption>
+                </figure>
             </div>
         </div>
     </div>
@@ -757,8 +867,14 @@
 
             <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
-                <div class="gallery-item">Screenshot 1</div>
-                <div class="gallery-item">Screenshot 2</div>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">Screenshot 1</div>
+                    <figcaption>Caption 1</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">Screenshot 2</div>
+                    <figcaption>Caption 2</figcaption>
+                </figure>
             </div>
         </div>
     </div>
@@ -783,8 +899,14 @@
 
             <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
-                <div class="gallery-item">Screenshot 1</div>
-                <div class="gallery-item">Screenshot 2</div>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">Screenshot 1</div>
+                    <figcaption>Caption 1</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">Screenshot 2</div>
+                    <figcaption>Caption 2</figcaption>
+                </figure>
             </div>
         </div>
     </div>
@@ -807,6 +929,7 @@
         <button class="lightbox-next" onclick="changeImage(1)">&#10095;</button>
         <div class="lightbox-content">
             <img id="lightbox-image" src="" alt="">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>
     </div>
 
@@ -817,7 +940,7 @@
                 tags: ['Python', 'Rapid Prototyping', 'Sensor Integration', 'Raspberry Pi', 'Arduino', 'Motor Control', 'Power Management']
             },
             project2: {
-                tags: ['JavaScript', 'Node.js']
+                tags: ['Design for Assembly', 'Reverse Engineering' , 'CAD', 'Mechanical Design', 'Technical Drawing','Engineering Economics']
             },
             project3: {
                 tags: ['Data Science', 'Machine Learning']
@@ -1011,6 +1134,14 @@
             const lightboxImg = document.getElementById('lightbox-image');
             lightboxImg.src = galleryImages[currentImageIndex].src;
             lightboxImg.alt = galleryImages[currentImageIndex].alt;
+            const captionEl = document.getElementById('lightbox-caption');
+            if (captionEl) {
+                const imgEl = galleryImages[currentImageIndex];
+                const fig = imgEl.closest('figure');
+                const figcaptionText = fig?.querySelector('figcaption')?.textContent?.trim();
+                const dataCaption = imgEl.getAttribute('data-caption');
+                captionEl.textContent = dataCaption || figcaptionText || imgEl.alt || '';
+            }
         }
 
         // Initialize gallery click handlers
