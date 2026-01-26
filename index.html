@@ -3,8 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Henry Stevens - Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <title>Henry Stevens | Mechanical Engineering Portfolio</title>
+        <meta name="description" content="Portfolio of Henry Stevens, mechanical and systems engineering student showcasing senior design, mechatronics, and prototyping projects." aria-label="page-description">
+        <link rel="canonical" href="https://henryjstevens.github.io/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Henry Stevens | Mechanical Engineering Portfolio">
+        <meta property="og:description" content="Selected projects in senior design, mechatronics, prototyping, and systems engineering from Henry Stevens.">
+        <meta property="og:url" content="https://henryjstevens.github.io/">
+        <meta property="og:image" content="https://henryjstevens.github.io/profilephoto.jpg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Henry Stevens | Mechanical Engineering Portfolio">
+        <meta name="twitter:description" content="Portfolio of Henry Stevens with projects in robotics, biomedical devices, and automation.">
+        <meta name="twitter:image" content="https://henryjstevens.github.io/profilephoto.jpg">
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Henry Stevens",
+            "url": "https://henryjstevens.github.io/",
+            "image": "https://henryjstevens.github.io/profilephoto.jpg",
+            "jobTitle": "Mechanical and Systems Engineering Student",
+            "alumniOf": "University of Colorado Boulder",
+            "sameAs": [
+                "https://www.linkedin.com/in/henryjstevens/",
+                "https://github.com/HenryJStevens"
+            ],
+            "email": "mailto:henry.stevens@colorado.edu"
+        }
+        </script>
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         * {
             margin: 0;
@@ -36,7 +63,7 @@
             align-items: center;
         }
 
-        nav h1 {
+        nav .brand {
             font-size: 1.5rem;
             font-weight: 600;
         }
@@ -83,7 +110,7 @@
             width: 100%;
         }
 
-        .home-text h2 {
+        .home-text h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
             color: #1a1a1a;
@@ -399,7 +426,7 @@
                 text-align: center;
             }
 
-            .home-text h2 {
+            .home-text h1 {
                 font-size: 2rem;
             }
 
@@ -557,7 +584,7 @@
 <body>
     <nav>
         <div class="container">
-            <h1><a href="#home" onclick="showHome()" style="text-decoration: none; color: inherit;">Henry Stevens</a></h1>
+            <div class="brand"><a href="#home" onclick="showHome()" style="text-decoration: none; color: inherit;">Henry Stevens</a></div>
             <ul>
                 <li><a href="#home" onclick="showHome()">Home</a></li>
                 <li><a href="#projects" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">Projects</a></li>
@@ -572,12 +599,12 @@
             <div class="container">
                 <div class="home-content">
                     <div class="home-text">
-                        <h2>Hi, I'm Henry</h2>
+                        <h1>Hi, I'm Henry Stevens </h1>
                         <p>I'm a <b>Mechanical Engineering</b> student in my senior year at the <b>University of Colorado Boulder</b>. I intend to pursue a master's degree in Mechanical Engineering with emphases in <b>automation</b> and <b>biomedical engineering</b>.</p>
-                        <p>My professional background includes experience in biomechanics research, biomedical device development, and extensive CAD work. </p>
+                        <p>My professional background includes experience in biomechanics research, biomedical device development, and extensive CAD work.</p>
                     </div>
                     <div class="profile-image">
-                        <img src="profilephoto.jpg" alt="Profile Photo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                        <img src="profilephoto.jpg" alt="Portrait of Henry Stevens" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                     </div>
                 </div>
             </div>
@@ -616,7 +643,7 @@
 
                         <a href="#project2" class="project-card">
                             <div class="project-image">
-                                <img src="NerfGunProject/coverImage.png" alt="Project 2 Cover Image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                                <img src="NerfGunProject/coverImage.png" alt="Nerf blaster redesign rendering" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                             </div>
                             <div class="project-content">
                                 <h3>Nerf Gun Reverse Engineering and DFM Optimization</h3>
@@ -634,11 +661,11 @@
 
                         <a href="#project3" class="project-card">
                             <div class="project-image">
-                                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Team Photo" onerror="this.onerror=null; this.src='MechProject/coverImage.jpg';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic senior design team photo" onerror="this.onerror=null; this.src='MechProject/coverImage.jpg';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                             </div>
                             <div class="project-content">
-                                <h3>Project Title 3</h3>
-                                <p>Your third project in a nutshellasdfasdfa. Make each description unique and specific to what makes this project special.</p>
+                                <h3>Next Generation Fluid Management System</h3>
+                                <p>For my ongoing senior capstone project sponsored by biomedical device company Hologic Inc., my team is developing a next-generation fluid management system to improve surgical outcomes and patient safety</p>
                                 <div class="project-tags">
                                     <span class="tag">Data Science</span>
                                     <span class="tag">Machine Learning</span>
@@ -760,7 +787,7 @@
             <div class="project-tags"></div>
 
             <div class="project-hero">
-                <img src="NerfGunProject/coverImage.png" alt="Project 2 Main Image" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <img src="NerfGunProject/coverImage.png" alt="Nerf blaster reverse engineering cover" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
             </div>
 
             <div class="project-description">
@@ -822,11 +849,16 @@
             <div class="project-tags"></div>
 
             <div class="project-hero">
-                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Team Photo" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic senior design team" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            </div>
+
+            <div style="background: #f5f5f5; border-left: 4px solid #0066cc; padding: 1.5rem; margin: 3rem auto; border-radius: 4px; max-width: 800px;">
+                <strong style="display: block; margin-bottom: 0.75rem;">Note on Project Details</strong>
+                <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">This project is sponsored by Hologic Inc., a leading biomedical device company. Design details, technical specifications, and implementation are protected as trade secrets under sponsorship agreements and are not publicly disclosed. This page outlines the problem and scope of work; additional technical information is confidential.</p>
             </div>
 
             <div class="project-description">
-                <p>Detailed description for project 3...</p>
+                <p>Hologic is a leading biomedical company specializing in devices for women's health, including advanced imaging systems and diagnostic tools.</p>
             </div>
 
             <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
@@ -915,8 +947,8 @@
         <div class="container">
             <p>&copy; 2026 Henry Stevens. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://github.com/HenryJStevens">GitHub</a>
-                <a href="https://www.linkedin.com/in/henryjstevens/">LinkedIn</a>
+                <a href="https://github.com/HenryJStevens" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/henryjstevens/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="mailto:henry.stevens@colorado.edu">Email</a>
             </div>
         </div>
@@ -943,7 +975,7 @@
                 tags: ['Design for Assembly', 'Reverse Engineering' , 'CAD', 'Mechanical Design', 'Technical Drawing','Engineering Economics']
             },
             project3: {
-                tags: ['Data Science', 'Machine Learning']
+                tags: ['Biomedical Devices', 'New Product Development', 'CAD', 'Mechanical Design' ]
             },
             project4: {
                 tags: ['Coming Soon']

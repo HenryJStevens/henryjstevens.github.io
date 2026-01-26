@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://henryjstevens.github.io/sitemap.xml
