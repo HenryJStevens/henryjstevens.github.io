@@ -55,7 +55,7 @@
         }
 
         nav .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -66,6 +66,7 @@
         nav .brand {
             font-size: 1.5rem;
             font-weight: 600;
+            margin-right: auto;
         }
 
         nav ul {
@@ -86,16 +87,23 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
         section {
-            padding: 4rem 0;
+            padding: 2rem 0;
+            padding-bottom: 120px; /* Add space for ribbon bar */
             min-height: 100vh;
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* Align to top instead of center */
+        }
+
+        #home {
+            padding-top: 2rem;
+            padding-bottom: 11rem;
+            min-height: auto;
         }
 
         #home {
@@ -104,22 +112,22 @@
 
         .home-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 2rem;
             align-items: center;
             width: 100%;
         }
 
         .home-text h1 {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: #1a1a1a;
         }
 
         .home-text p {
             font-size: 1.2rem;
             color: #555;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .profile-image {
@@ -424,6 +432,12 @@
             .home-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .profile-image {
+                order: -1; /* Move profile image to top on mobile */
             }
 
             .home-text h1 {
@@ -494,6 +508,156 @@
             object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Ribbon Bar Styles */
+        .ribbon-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #e0e0e0;
+            padding: 1rem 0;
+            z-index: 90;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            animation: slideUp 0.5s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        /* Ribbon at bottom of page before footer */
+        .ribbon-bar.at-footer {
+            position: relative;
+            animation: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+            margin-top: 0.5rem;
+        }
+
+        /* Hide ribbon when viewing project details */
+        .project-detail.active ~ #ribbonBar,
+        #ribbonBar.hidden {
+            display: none;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .ribbon-bar.hidden {
+            display: none;
+        }
+
+        .ribbon-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .ribbon-label {
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+            font-size: 0.9rem;
+        }
+
+        .ribbon-gallery {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto; /* Allow horizontal scrolling */
+            overflow-y: hidden;
+            flex: 1;
+            padding: 0.5rem 0;
+            position: relative;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+
+        .ribbon-gallery::-webkit-scrollbar {
+            display: none; /* Chrome/Safari/Opera */
+        }
+
+        .ribbon-gallery-track {
+            display: flex;
+            gap: 1rem;
+            animation: ribbonScroll 60s linear infinite;
+        }
+
+        .ribbon-gallery-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes ribbonScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .ribbon-gallery::-webkit-scrollbar {
+            display: none; /* Hide scrollbar since we're auto-scrolling */
+        }
+
+        .ribbon-item {
+            flex-shrink: 0;
+            width: 100px;
+            height: 70px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .ribbon-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .ribbon-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ribbon-item.video-thumb::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+
+        .ribbon-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .ribbon-close:hover {
+            color: #333;
         }
 
         .lightbox-caption {
@@ -584,10 +748,10 @@
 <body>
     <nav>
         <div class="container">
-            <div class="brand"><a href="#home" onclick="showHome()" style="text-decoration: none; color: inherit;">Henry Stevens</a></div>
+            <div class="brand"><a href="#home" onclick="showHome(); return false;" style="text-decoration: none; color: inherit;">Henry Stevens</a></div>
             <ul>
-                <li><a href="#home" onclick="showHome()">Home</a></li>
-                <li><a href="#projects" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">Projects</a></li>
+                <li><a href="#home" onclick="showHome(); return false;">Home</a></li>
+                <li><a href="#projects" onclick="showHome(); scrollToProjects(); return false;">Projects</a></li>
                 <li><a href="resume.html">Resume</a></li>
             </ul>
         </div>
@@ -600,9 +764,9 @@
                 <div class="home-content">
                     <div class="home-text">
                         <h1>Hi, I'm Henry Stevens </h1>
-                        <p>I'm a <b>Mechanical Engineering</b> student in my senior year at the <b>University of Colorado Boulder</b>. I intend to pursue a master's degree in Mechanical Engineering with emphases in <b>automation</b> and <b>biomedical engineering</b>.</p>
-                        <p>My professional background includes experience in biomechanics research, biomedical device development, and extensive CAD work.</p>
-                    </div>
+                        <p>I'm a senior <strong>Mechanical Engineering</strong> student at the <strong>University of Colorado Boulder</strong> with interests in <strong>robotics</strong>, <strong>controls</strong>, and <strong>biomedical systems</strong>. I plan to pursue a <strong>master’s degree in Mechanical Engineering</strong> with an emphasis on <strong>automation</strong> and <strong>biomedical engineering</strong>.</p>
+                        <p>My experience centers on <strong>mechanical design</strong> and <strong>systems engineering</strong>, with applications spanning <strong>medical devices</strong>, <strong>biomechanics research</strong>, and <strong>electromechanical prototyping</strong>. I enjoy working from <strong>system requirements</strong> through <strong>detailed CAD and drawings</strong>, <strong>fabrication</strong>, and <strong>testing</strong>, and I’m particularly interested in applying these skills to <strong>automation-driven biomedical technologies</strong>.</p>
+</div>
                     <div class="profile-image">
                         <img src="profilephoto.jpg" alt="Portrait of Henry Stevens" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                     </div>
@@ -656,23 +820,23 @@
                         </a>
 
                         <a href="#project4" class="project-card" data-project-id="project4">
-                            <div class="project-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                                Project Image 4
+                            <div class="project-image">
+                                <img src="CompDBike/CoverPhoto.jpg" alt="CompDBike project cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                             </div>
                             <div class="project-content">
-                                <h3>Project Title 4</h3>
-                                <p>Your fourth project summary. What problem does it solve? Why is it interesting?</p>
+                                <h3>Drill Powered Bicycle</h3>
+                                <p>Designed and built a drill-powered bicycle featuring a custom welded steel frame, go-kart–style steering, and a mechanically integrated drivetrain. The project emphasized full-cycle engineering, from CAD-based design and design reviews through structural analysis, fabrication, and system integration.</p>
                                 <div class="project-tags"></div>
                             </div>
                         </a>
 
                         <a href="#project5" class="project-card" data-project-id="project5">
-                            <div class="project-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                                Project Image 5
+                            <div class="project-image">
+                                <img src="website/websiteHomepage.png" alt="Website homepage screenshot" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
                             <div class="project-content">
-                                <h3>Project Title 5</h3>
-                                <p>Your fifth project summary. What problem does it solve? Why is it interesting?</p>
+                                <h3>This Portfolio Website</h3>
+                                <p>Designed and built a personal portfolio website from scratch using a vibe-coding workflow, prioritizing full control, rapid iteration, and content clarity. The site was developed entirely with free tools and deployed via GitHub Pages, demonstrating low-overhead, maintainable web development.</p>
                                 <div class="project-tags"></div>
                             </div>
                         </a>
@@ -686,7 +850,7 @@
     <div id="project1" class="project-detail">
         <div class="container">
             <div class="project-navigation">
-                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
                 <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project1 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
             </div>
             
@@ -698,6 +862,29 @@
                     <source src="MechProject/coverVideo.mp4" type="video/mp4">
                     Your browser doesn't support video.
                 </video>
+            </div>
+
+            <!-- Project Stats Section -->
+            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">6</div>
+                        <div style="color: #666; font-size: 0.9rem;">Team Members</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">$300</div>
+                        <div style="color: #666; font-size: 0.9rem;">Budget</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">14 weeks</div>
+                        <div style="color: #666; font-size: 0.9rem;">Timeline</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">3</div>
+                        <div style="color: #666; font-size: 0.9rem;">Microcontrollers</div>
+                    </div>
+                </div>
             </div>
 
             <div class="project-description">
@@ -757,7 +944,7 @@
     <div id="project2" class="project-detail">
         <div class="container">
             <div class="project-navigation">
-                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
                 <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project2 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
             </div>
             
@@ -766,6 +953,29 @@
 
             <div class="project-hero">
                 <img src="NerfGunProject/coverImage.png" alt="Nerf blaster reverse engineering cover" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            </div>
+
+            <!-- Project Stats Section -->
+            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">1</div>
+                        <div style="color: #666; font-size: 0.9rem;">Individual Project</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">~$150</div>
+                        <div style="color: #666; font-size: 0.9rem;">Budget</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">8 weeks</div>
+                        <div style="color: #666; font-size: 0.9rem;">Timeline</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">5</div>
+                        <div style="color: #666; font-size: 0.9rem;">CAD Assemblies</div>
+                    </div>
+                </div>
             </div>
 
             <div class="project-description">
@@ -819,7 +1029,7 @@
     <div id="project3" class="project-detail">
         <div class="container">
             <div class="project-navigation">
-                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
                 <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project3 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
             </div>
             
@@ -828,6 +1038,29 @@
 
             <div class="project-hero">
                 <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic senior design team" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            </div>
+
+            <!-- Project Stats Section -->
+            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">10</div>
+                        <div style="color: #666; font-size: 0.9rem;">Team Members</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">Industry</div>
+                        <div style="color: #666; font-size: 0.9rem;">Sponsorship</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">1 year</div>
+                        <div style="color: #666; font-size: 0.9rem;">Duration</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">Medical</div>
+                        <div style="color: #666; font-size: 0.9rem;">Device Class</div>
+                    </div>
+                </div>
             </div>
 
             <div style="background: #f5f5f5; border-left: 4px solid #0066cc; padding: 1.5rem; margin: 3rem auto; border-radius: 4px; max-width: 800px;">
@@ -869,30 +1102,77 @@
     <div id="project4" class="project-detail">
         <div class="container">
             <div class="project-navigation">
-                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
                 <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project4 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
             </div>
             
-            <h2>Project Title 4</h2>
+            <h2>Drill-Powered Bicycle</h2>
             <div class="project-tags"></div>
 
             <div class="project-hero">
-                Main Project Image
+                <img src="CompDBike/coverPhoto.jpg" alt="CompDBike project cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+            </div>
+
+            <!-- Project Stats Section -->
+            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">6</div>
+                        <div style="color: #666; font-size: 0.9rem;">Team Members</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">~$3,000</div>
+                        <div style="color: #666; font-size: 0.9rem;">Budget</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">12 weeks</div>
+                        <div style="color: #666; font-size: 0.9rem;">Timeline</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">50+</div>
+                        <div style="color: #666; font-size: 0.9rem;">Welds</div>
+                    </div>
+                </div>
             </div>
 
             <div class="project-description">
-                <p>Detailed description for project 4...</p>
+                <p>As part of a six-person team, I helped design and build a drill-powered bicycle using a custom welded steel frame and a go-kart–style front wheel steering system rather than a conventional bicycle fork and head tube. The steering geometry was implemented through a steering shaft and linkage, allowing for precise control while accommodating the structural constraints of the frame. Power was delivered to the rear wheel via a drivetrain driven by a handheld power drill mounted in pillow blocks, with mechanical controls that allowed one brake lever to actuate standard bicycle brakes and the other to modulate drill input.</p>
+                <p>The entire system was fully designed in CAD prior to fabrication, including the frame, steering mechanism, drivetrain, and mounting interfaces. The project followed a structured engineering workflow with design reviews at key milestones, where concepts were evaluated for structural integrity, manufacturability, and safety before being approved for fabrication. High-stress regions in the frame and drivetrain were identified through hand calculations and simplified analysis, informing material selection, joint design, and weld placement.</p>
+                <p>Following the design phase, the team transitioned into fabrication and assembly, which required learning and applying MIG welding techniques and translating CAD intent into a physically buildable system. The project emphasized end-to-end engineering: moving from concept and analysis through detailed design, fabrication, integration, and testing, while coordinating work across a large team under time and resource constraints.</p>
             </div>
 
             <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
                 <figure class="gallery-item">
-                    <div class="gallery-thumb">Screenshot 1</div>
-                    <figcaption>Caption 1</figcaption>
+                    <div class="gallery-thumb">
+                        <img src="CompDBike/teamPhoto.png" alt="Team photo" data-caption="The six-person team that designed and built the drill-powered bicycle." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Team Photo</figcaption>
                 </figure>
                 <figure class="gallery-item">
-                    <div class="gallery-thumb">Screenshot 2</div>
-                    <figcaption>Caption 2</figcaption>
+                    <div class="gallery-thumb">
+                        <img src="CompDBike/AssemblyProcess.JPG" alt="Assembly process" data-caption="Assembly of the drill-powered bicycle, showing how components were integrated together." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Assembly</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="CompDBike/Welding.jpg" alt="Welding" data-caption="MIG welding of the custom steel frame, a critical manufacturing step in the project." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Welding the frame</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="CompDBike/pollowBlocksDrawing.png" alt="Pillow blocks" data-caption="Assembly drawing of the drivetrain." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Drivetrain design</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="CompDBike/TricksPhoto.jpg" alt="Tricks photo" data-caption="The completed drill-powered bicycle in action." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Finished bicycle</figcaption>
                 </figure>
             </div>
         </div>
@@ -901,32 +1181,230 @@
     <div id="project5" class="project-detail">
         <div class="container">
             <div class="project-navigation">
-                <a href="#" class="project-nav-link" onclick="showHome(); document.getElementById('projects').scrollIntoView({behavior: 'smooth'}); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
                 <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project5 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
             </div>
             
-            <h2>Project Title 5</h2>
-            <div class="project-tags"></div>
+            <h2>This Portfolio Website</h2>
+            <div class="project-tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">Vanilla JavaScript</span>
+                <span class="tag">GitHub Pages</span>
+                <span class="tag">Responsive Design</span>
+                <span class="tag">SEO</span>
+            </div>
 
-            <div class="project-hero">
-                Main Project Image
+            <div class="project-hero" style="overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <img src="website/websiteHomepage.png" alt="Website homepage screenshot" style="width: 100%; height: auto; display: block;">
+            </div>
+
+            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1.5rem; margin: 3rem auto; border-radius: 4px; max-width: 800px;">
+                <strong style="display: block; margin-bottom: 0.75rem;">Note on AI-Assisted Development</strong>
+                <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">Much of this website was built using AI-assisted "vibe-coding" workflows. I want to acknowledge that while these tools are incredibly useful in reducing the barrier to entry for new developers in low-stakes contexts like this one, I would not consider myself a web developer, and would not rely on these tools as a substitute for real expertise and human judgment. Moreover, I want to acknowledge the very real environmental and economic costs currently associated with these tools.</p>
+            </div>
+
+            <!-- Meta Stats Section -->
+            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">2</div>
+                        <div style="color: #666; font-size: 0.9rem;">HTML Files</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">0</div>
+                        <div style="color: #666; font-size: 0.9rem;">Dependencies</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">~2000</div>
+                        <div style="color: #666; font-size: 0.9rem;">Lines of Code</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">$0</div>
+                        <div style="color: #666; font-size: 0.9rem;">Total Cost</div>
+                    </div>
+                </div>
             </div>
 
             <div class="project-description">
-                <p>Detailed description for project 5...</p>
+                <p>This website was designed and built from scratch to reflect a specific vision: a clean, content-first portfolio with full control over structure, styling, and iteration. I experimented with website builders like Wix, but found the process limiting and difficult to work with. I am not a web developer, I'd never written a word of HTML before this, so I chose to develop this site locally using lightweight web technologies and an AI-assisted “vibe-coding” workflow. This approach allowed me to make precise, incremental changes to layout, content, and styling without fighting a platform’s constraints.</p>
+                <p>The site was created entirely with free tools and is hosted via <strong>GitHub Pages</strong>, enabling a simple and reproducible deployment pipeline. Working locally allowed rapid experimentation and version control, while GitHub-based hosting made publishing updates effectively instantaneous. Throughout development, AI tools were used to accelerate front-end scaffolding and iteration, while all structural decisions, content organization, and final code edits were made intentionally and reviewed manually.</p>
+                <p>Beyond the technical implementation, this project emphasizes communication and design judgment: translating complex engineering work into clear written narratives, establishing visual hierarchy across projects, and maintaining consistency as the site evolves. The result is a flexible, low-overhead platform that I can continuously refine and extend, and a demonstration of how modern tooling can be leveraged to move efficiently from concept to a polished, maintainable product.</p>
             </div>
 
             <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
             <div class="project-gallery">
                 <figure class="gallery-item">
-                    <div class="gallery-thumb">Screenshot 1</div>
-                    <figcaption>Caption 1</figcaption>
+                    <div class="gallery-thumb">
+                        <img src="website/websiteHomepage.png" alt="Website homepage" data-caption="The website homepage showcasing the portfolio design and layout." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Homepage</figcaption>
                 </figure>
                 <figure class="gallery-item">
-                    <div class="gallery-thumb">Screenshot 2</div>
-                    <figcaption>Caption 2</figcaption>
+                    <div class="gallery-thumb">
+                        <img src="website/codingEnvironment.png" alt="Coding environment" data-caption="The development environment used to build this website." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Development Environment</figcaption>
                 </figure>
             </div>
+        </div>
+    </div>
+
+    <!-- Ribbon Bar -->
+    <div id="ribbonBar" class="ribbon-bar">
+        <div class="ribbon-container">
+            <div class="ribbon-label"></div>
+            <div class="ribbon-gallery">
+                <div class="ribbon-gallery-track">
+                    <!-- First set of images -->
+                    <div class="ribbon-item video-thumb" onclick="navigateToProject('project1')" title="Autonomous Robot - Video">
+                        <img src="MechProject/coverVideoPoster.jpg" alt="Robot Video">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Closeup">
+                        <img src="MechProject/closeupImage.jpg" alt="Robot Closeup">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Jump">
+                        <img src="MechProject/coverImage.jpg" alt="Robot Jump">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - CAD">
+                        <img src="MechProject/robotFullCad.png" alt="Robot CAD">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Collection System">
+                        <img src="MechProject/collectionCAD.png" alt="Collection CAD">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Circuit">
+                        <img src="MechProject/circuitDiagram.png" alt="Circuit Diagram">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Course">
+                        <img src="MechProject/courseSchematic.png" alt="Course Schematic">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Cover">
+                        <img src="NerfGunProject/coverImage.png" alt="Nerf Gun">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Internals">
+                        <img src="NerfGunProject/internalsRendering.png" alt="Nerf Internals">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Assembly Drawing">
+                        <img src="NerfGunProject/assemblyDrawing.png" alt="Assembly Drawing">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Assembly Redesign">
+                        <img src="NerfGunProject/assemblyRedesign.png" alt="Assembly Redesign">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Levers Redesign">
+                        <img src="NerfGunProject/leversRedesign.png" alt="Levers Redesign">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - DFA Analysis">
+                        <img src="NerfGunProject/DFAanalysis.png" alt="DFA Analysis">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Team">
+                        <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic Team">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Fluent System">
+                        <img src="HologicSeniorDesign/FluentProductImage.jpg" alt="Fluent System">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Specifications">
+                        <img src="HologicSeniorDesign/redactedSpecTable.png" alt="Specifications">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Cover">
+                        <img src="CompDBike/CoverPhoto.jpg" alt="CompDBike">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Team">
+                        <img src="CompDBike/teamPhoto.png" alt="Bike Team">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Assembly">
+                        <img src="CompDBike/AssemblyProcess.JPG" alt="Assembly">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Welding">
+                        <img src="CompDBike/Welding.jpg" alt="Welding">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Pillow Blocks">
+                        <img src="CompDBike/pollowBlocksDrawing.png" alt="Pillow Blocks">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Action Shot">
+                        <img src="CompDBike/TricksPhoto.jpg" alt="Bike Action">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project5')" title="Website - Homepage">
+                        <img src="website/websiteHomepage.png" alt="Website Homepage">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project5')" title="Website - Development">
+                        <img src="website/codingEnvironment.png" alt="Website Development">
+                    </div>
+                    <div class="ribbon-item video-thumb" onclick="navigateToProject('project1')" title="Autonomous Robot - Video">
+                        <img src="MechProject/coverVideoPoster.jpg" alt="Robot Video">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Closeup">
+                        <img src="MechProject/closeupImage.jpg" alt="Robot Closeup">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Jump">
+                        <img src="MechProject/coverImage.jpg" alt="Robot Jump">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - CAD">
+                        <img src="MechProject/robotFullCad.png" alt="Robot CAD">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Collection System">
+                        <img src="MechProject/collectionCAD.png" alt="Collection CAD">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Circuit">
+                        <img src="MechProject/circuitDiagram.png" alt="Circuit Diagram">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Course">
+                        <img src="MechProject/courseSchematic.png" alt="Course Schematic">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Cover">
+                        <img src="NerfGunProject/coverImage.png" alt="Nerf Gun">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Internals">
+                        <img src="NerfGunProject/internalsRendering.png" alt="Nerf Internals">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Assembly Drawing">
+                        <img src="NerfGunProject/assemblyDrawing.png" alt="Assembly Drawing">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Assembly Redesign">
+                        <img src="NerfGunProject/assemblyRedesign.png" alt="Assembly Redesign">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Levers Redesign">
+                        <img src="NerfGunProject/leversRedesign.png" alt="Levers Redesign">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - DFA Analysis">
+                        <img src="NerfGunProject/DFAanalysis.png" alt="DFA Analysis">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Team">
+                        <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic Team">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Fluent System">
+                        <img src="HologicSeniorDesign/FluentProductImage.jpg" alt="Fluent System">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Specifications">
+                        <img src="HologicSeniorDesign/redactedSpecTable.png" alt="Specifications">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Cover">
+                        <img src="CompDBike/CoverPhoto.jpg" alt="CompDBike">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Team">
+                        <img src="CompDBike/teamPhoto.png" alt="Bike Team">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Assembly">
+                        <img src="CompDBike/AssemblyProcess.JPG" alt="Assembly">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Welding">
+                        <img src="CompDBike/Welding.jpg" alt="Welding">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Pillow Blocks">
+                        <img src="CompDBike/pollowBlocksDrawing.png" alt="Pillow Blocks">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Action Shot">
+                        <img src="CompDBike/TricksPhoto.jpg" alt="Bike Action">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project5')" title="Website - Homepage">
+                        <img src="website/websiteHomepage.png" alt="Website Homepage">
+                    </div>
+                    <div class="ribbon-item" onclick="navigateToProject('project5')" title="Website - Development">
+                        <img src="website/codingEnvironment.png" alt="Website Development">
+                    </div>
+                </div>
+            </div>
+            <button class="ribbon-close" onclick="closeRibbon()" title="Close">&times;</button>
         </div>
     </div>
 
@@ -953,6 +1431,100 @@
     </div>
 
     <script>
+        // Helper function to scroll to projects with offset for nav bar
+        function scrollToProjects() {
+            const projectsSection = document.getElementById('projects');
+            const navHeight = document.querySelector('nav').offsetHeight;
+            if (projectsSection) {
+                const targetPosition = projectsSection.offsetTop - navHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Ribbon Bar Functions
+        function navigateToProject(projectId) {
+            const projectElement = document.getElementById(projectId);
+            if (projectElement) {
+                showProject(projectId);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function hideRibbonForProject() {
+            const ribbon = document.getElementById('ribbonBar');
+            if (ribbon) {
+                ribbon.classList.add('hidden');
+            }
+        }
+
+        function closeRibbon() {
+            const ribbon = document.getElementById('ribbonBar');
+            if (ribbon) {
+                ribbon.classList.add('hidden');
+            }
+        }
+
+        // Handle scroll to reposition ribbon near footer
+        window.addEventListener('scroll', function() {
+            const ribbon = document.getElementById('ribbonBar');
+            const footer = document.querySelector('footer');
+            
+            if (!ribbon || !footer) return;
+            
+            const activeProject = document.querySelector('.project-detail.active');
+            if (activeProject) return; // Don't show ribbon on project pages
+            
+            const footerRect = footer.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            
+            // If footer is visible or close (within viewport), reposition ribbon
+            if (footerRect.top < viewportHeight + 50) { // 50px buffer
+                ribbon.classList.add('at-footer');
+                ribbon.style.position = 'relative';
+                ribbon.style.bottom = 'auto';
+            } else {
+                // Footer is far away, keep ribbon fixed at bottom
+                ribbon.classList.remove('at-footer');
+                ribbon.style.position = 'fixed';
+                ribbon.style.bottom = '0';
+            }
+        });
+
+        // Infinite scroll for ribbon gallery
+        const ribbonGallery = document.querySelector('.ribbon-gallery');
+        if (ribbonGallery) {
+            let isAdjusting = false;
+            
+            ribbonGallery.addEventListener('scroll', function() {
+                if (isAdjusting) return;
+                
+                const scrollWidth = this.scrollWidth;
+                const clientWidth = this.clientWidth;
+                const scrollLeft = this.scrollLeft;
+                const maxScroll = scrollWidth - clientWidth;
+                const halfWidth = scrollWidth / 2;
+                
+                // When at the very end, jump back to middle
+                if (scrollLeft >= maxScroll - 1) {
+                    isAdjusting = true;
+                    this.scrollLeft = halfWidth - clientWidth;
+                    setTimeout(() => isAdjusting = false, 50);
+                }
+                // When at the very beginning, jump to middle
+                else if (scrollLeft <= 1) {
+                    isAdjusting = true;
+                    this.scrollLeft = halfWidth;
+                    setTimeout(() => isAdjusting = false, 50);
+                }
+            });
+            
+            // Start at the middle position
+            ribbonGallery.scrollLeft = ribbonGallery.scrollWidth / 2;
+        }
+
         // Single source of truth for project data
         const projectData = {
             project1: {
@@ -965,10 +1537,10 @@
                 tags: ['Biomedical Devices', 'New Product Development', 'CAD', 'Mechanical Design' , 'Feedback Systems','Design Reviews','Systems Engineering']
             },
             project4: {
-                tags: ['Coming Soon']
+                tags: ['Welding', 'CAD', 'Mechanical Design', 'Structural Analysis', 'Fabrication', 'Drivetrain Design']
             },
             project5: {
-                tags: ['Coming Soon']
+                tags: ['Web Development', 'Vibe Coding', 'Responsive Design', 'UI/UX Design', 'SEO', 'GitHub Pages', 'AI-Assisted Development']
             }
         };
 
@@ -999,6 +1571,11 @@
                 el.classList.remove('active');
             });
             document.getElementById(projectId).classList.add('active');
+            // Hide ribbon when showing project
+            const ribbon = document.getElementById('ribbonBar');
+            if (ribbon) {
+                ribbon.classList.add('hidden');
+            }
             window.scrollTo(0, 0);
             renderProjectTags(projectId);
             
@@ -1015,6 +1592,19 @@
             document.getElementById('main-page').style.display = 'block';
             document.querySelectorAll('.project-detail').forEach(el => {
                 el.classList.remove('active');
+            });
+            // Show ribbon when returning home
+            const ribbon = document.getElementById('ribbonBar');
+            if (ribbon) {
+                ribbon.classList.remove('hidden');
+                ribbon.classList.remove('at-footer');
+                ribbon.style.position = 'fixed';
+                ribbon.style.bottom = '0';
+            }
+            // Always scroll smoothly to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
             // Clear URL hash when returning home
             if (window.location.hash) {
