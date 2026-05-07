@@ -39,16 +39,29 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --bg: #f8f7f4;
+            --surface: #ffffff;
+            --surface-soft: #f3f4f6;
+            --border: #e5e7eb;
+            --text: #1f2937;
+            --muted: #5b6472;
+            --accent: #1f5a88;
+            --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: "Aptos", "Segoe UI", Arial, sans-serif;
+            line-height: 1.65;
+            color: var(--text);
+            background: var(--bg);
         }
 
         nav {
-            background: #fff;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 1rem 0;
+            background: rgba(248, 247, 244, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -77,13 +90,13 @@
 
         nav a {
             text-decoration: none;
-            color: #333;
+            color: var(--text);
             font-weight: 500;
             transition: color 0.3s;
         }
 
         nav a:hover {
-            color: #0066cc;
+            color: var(--accent);
         }
 
         .container {
@@ -93,41 +106,41 @@
         }
 
         section {
-            padding: 2rem 0;
-            padding-bottom: 120px; /* Add space for ribbon bar */
-            min-height: 100vh;
+            padding: 3.5rem 0;
+            min-height: auto;
             display: flex;
             align-items: flex-start; /* Align to top instead of center */
         }
 
         #home {
-            padding-top: 2rem;
-            padding-bottom: 11rem;
+            padding-top: 2.5rem;
+            padding-bottom: 3rem;
             min-height: auto;
-        }
-
-        #home {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: #ffffff;
         }
 
         .home-content {
             display: grid;
             grid-template-columns: 1.3fr 1fr;
-            gap: 2rem;
-            align-items: center;
+            gap: 3rem;
+            align-items: start;
             width: 100%;
         }
 
         .home-text h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: #1a1a1a;
+            font-size: clamp(2.75rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            color: var(--text);
+            letter-spacing: -0.04em;
+            font-weight: 700;
         }
 
         .home-text p {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 0.75rem;
+            font-size: 1.12rem;
+            color: var(--muted);
+            margin-bottom: 1.25rem;
+            max-width: 60ch;
+            line-height: 1.7;
         }
 
         .profile-image {
@@ -143,40 +156,46 @@
             color: #666;
             margin: 0 auto;
             overflow: hidden;
+            box-shadow: var(--shadow);
         }
 
         #projects {
-            background: #fff;
+            background: #ffffff;
+            padding-top: 3rem;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: clamp(2.25rem, 5vw, 3.25rem);
             margin-bottom: 0.5rem;
+            color: var(--text);
+            letter-spacing: -0.03em;
+            font-weight: 700;
         }
 
         .section-header p {
-            font-size: 1.1rem;
-            color: #666;
+            font-size: 1rem;
+            color: var(--muted);
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
             width: 100%;
         }
 
         .project-card {
-            background: #fff;
-            border-radius: 12px;
+            background: var(--surface);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
@@ -184,14 +203,15 @@
         }
 
         .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 14px 34px rgba(15, 23, 42, 0.1);
+            border-color: #d6dbe1;
         }
 
         .project-image {
             width: 100%;
             aspect-ratio: 16 / 9;
-            background: #f5f5f5;
+            background: #eef0f2;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -205,7 +225,6 @@
             height: 100%;
             object-fit: contain;
             border-radius: 12px;
-            transition: opacity 0.3s ease;
             background: #000;
         }
 
@@ -216,19 +235,20 @@
         }
 
         .project-content {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .project-content h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #1a1a1a;
+            font-size: 1.35rem;
+            line-height: 1.25;
+            margin-bottom: 0.8rem;
+            color: var(--text);
         }
 
         .project-content p {
-            color: #555;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            line-height: 1.7;
         }
 
         .project-tags {
@@ -238,11 +258,12 @@
         }
 
         .tag {
-            background: #e0e0e0;
-            padding: 0.4rem 1rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            color: #555;
+            background: #f1f3f5;
+            border: 1px solid var(--border);
+            padding: 0.32rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            color: var(--muted);
         }
 
         footer {
@@ -272,8 +293,8 @@
         /* Project Detail Page Styles */
         .project-detail {
             display: none;
-            padding: 4rem 0;
-            min-height: 100vh;
+            padding: 3rem 0;
+            min-height: auto;
         }
 
         .project-detail.active {
@@ -284,17 +305,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .project-nav-link {
-            color: #0066cc;
+            color: var(--accent);
             text-decoration: none;
             font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .project-nav-link:hover {
@@ -302,12 +323,14 @@
         }
 
         .project-detail h2 {
-            font-size: 3rem;
+            font-size: clamp(2.25rem, 5vw, 3.25rem);
             margin-bottom: 1rem;
-            color: #1a1a1a;
+            color: var(--text);
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            letter-spacing: -0.03em;
+            font-weight: 700;
         }
 
         .project-detail .project-tags {
@@ -320,10 +343,10 @@
         .project-hero {
             width: 100%;
             max-width: 800px;
-            height: 500px;
-            background: #fff;
-            border-radius: 12px;
-            margin-bottom: 3rem;
+            min-height: 420px;
+            background: var(--surface);
+            border-radius: 16px;
+            margin-bottom: 2.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -331,20 +354,29 @@
             font-size: 1.5rem;
             margin-left: auto;
             margin-right: auto;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
 
         .project-hero video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 16px;
+        }
+
+        .project-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .project-description {
-            font-size: 1.2rem;
+            font-size: 1.04rem;
             line-height: 1.8;
-            color: #555;
-            margin-bottom: 3rem;
+            color: var(--muted);
+            margin-bottom: 2.5rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
@@ -362,7 +394,7 @@
         .project-gallery {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1.25rem;
             margin-bottom: 3rem;
             max-width: 800px;
             margin-left: auto;
@@ -376,6 +408,7 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            color: var(--text);
         }
 
         .gallery-item {
@@ -419,13 +452,94 @@
             background: #f0f0f0;
             border-radius: 8px;
             overflow: hidden;
+            position: relative;
+        }
+
+        /* Play overlay for video thumbnails */
+        .project-detail .gallery-thumb .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .project-detail .gallery-thumb .play-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-detail .gallery-thumb .play-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+            transform: translateX(2px);
         }
 
         .project-detail .gallery-item figcaption {
             margin-top: 0.5rem;
             font-size: 0.95rem;
-            color: #666;
+            color: var(--muted);
             line-height: 1.4;
+        }
+
+        .project-stats {
+            max-width: 800px;
+            margin: 2.5rem auto;
+            padding: 1.5rem 1.75rem;
+            background: var(--surface-soft);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .project-stats h3 {
+            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            color: var(--text);
+            letter-spacing: -0.01em;
+        }
+
+        .project-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .project-stat-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1.15;
+        }
+
+        .project-stat-label {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .project-note {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1.25rem 1.5rem;
+            background: #fffdf7;
+            border: 1px solid #f0e4b8;
+            border-left: 4px solid #c7a53f;
+            border-radius: 12px;
+            color: var(--muted);
+        }
+
+        .project-note strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
         }
 
         @media (max-width: 768px) {
@@ -434,6 +548,7 @@
                 text-align: center;
                 display: flex;
                 flex-direction: column;
+                gap: 1.75rem;
             }
 
             .profile-image {
@@ -450,7 +565,12 @@
 
             section {
                 min-height: auto;
-                padding: 3rem 0;
+                padding: 2rem 0;
+            }
+
+            #home {
+                padding-top: 1.75rem;
+                padding-bottom: 2rem;
             }
 
             .projects-grid {
@@ -462,12 +582,16 @@
             }
 
             .project-hero {
-                height: 300px;
+                min-height: 260px;
             }
 
             .project-gallery {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
+            }
+
+            .project-stats {
+                padding: 1.25rem;
             }
         }
 
@@ -508,156 +632,6 @@
             object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        /* Ribbon Bar Styles */
-        .ribbon-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid #e0e0e0;
-            padding: 1rem 0;
-            z-index: 90;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            animation: slideUp 0.5s ease-out;
-            transition: all 0.3s ease;
-        }
-
-        /* Ribbon at bottom of page before footer */
-        .ribbon-bar.at-footer {
-            position: relative;
-            animation: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-top: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-            margin-top: 0.5rem;
-        }
-
-        /* Hide ribbon when viewing project details */
-        .project-detail.active ~ #ribbonBar,
-        #ribbonBar.hidden {
-            display: none;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(100%);
-            }
-            to {
-                transform: translateY(0);
-            }
-        }
-
-        .ribbon-bar.hidden {
-            display: none;
-        }
-
-        .ribbon-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .ribbon-label {
-            font-weight: 600;
-            color: #333;
-            white-space: nowrap;
-            font-size: 0.9rem;
-        }
-
-        .ribbon-gallery {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto; /* Allow horizontal scrolling */
-            overflow-y: hidden;
-            flex: 1;
-            padding: 0.5rem 0;
-            position: relative;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE/Edge */
-        }
-
-        .ribbon-gallery::-webkit-scrollbar {
-            display: none; /* Chrome/Safari/Opera */
-        }
-
-        .ribbon-gallery-track {
-            display: flex;
-            gap: 1rem;
-            animation: ribbonScroll 60s linear infinite;
-        }
-
-        .ribbon-gallery-track:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes ribbonScroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .ribbon-gallery::-webkit-scrollbar {
-            display: none; /* Hide scrollbar since we're auto-scrolling */
-        }
-
-        .ribbon-item {
-            flex-shrink: 0;
-            width: 100px;
-            height: 70px;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        .ribbon-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        .ribbon-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .ribbon-item.video-thumb::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 1.5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            pointer-events: none;
-        }
-
-        .ribbon-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #666;
-            cursor: pointer;
-            padding: 0.5rem;
-            line-height: 1;
-            transition: color 0.3s;
-        }
-
-        .ribbon-close:hover {
-            color: #333;
         }
 
         .lightbox-caption {
@@ -763,9 +737,9 @@
             <div class="container">
                 <div class="home-content">
                     <div class="home-text">
-                        <h1>Hi, I'm Henry Stevens </h1>
-                        <p>I'm a senior <strong>Mechanical Engineering</strong> student at the <strong>University of Colorado Boulder</strong> with interests in <strong>robotics</strong>, <strong>controls</strong>, and <strong>biomedical systems</strong>. I plan to pursue a <strong>master’s degree in Mechanical Engineering</strong> with an emphasis on <strong>automation</strong> and <strong>biomedical engineering</strong>.</p>
-                        <p>My experience centers on <strong>mechanical design</strong> and <strong>systems engineering</strong>, with applications spanning <strong>medical devices</strong>, <strong>biomechanics research</strong>, and <strong>electromechanical prototyping</strong>. I enjoy working from <strong>system requirements</strong> through <strong>detailed CAD and drawings</strong>, <strong>fabrication</strong>, and <strong>testing</strong>, and I’m particularly interested in applying these skills to <strong>automation-driven biomedical technologies</strong>.</p>
+                        <h1>Hi, I'm Henry Stevens</h1>
+                        <p>I'm a recent mechanical engineering graduate from <strong>CU Boulder</strong> seeking opportunities in <strong>robotics</strong>, <strong>controls</strong>, and <strong>biomedical engineering</strong>. I’m pursuing a master’s degree in mechanical engineering with an emphasis on automation and biomedical technology.</p>
+                        <p>My experience spans mechanical design, systems engineering, medical devices, and fabrication—from concept through detailed CAD, manufacturing, and testing.</p>
 </div>
                     <div class="profile-image">
                         <img src="profilephoto.jpg" alt="Portrait of Henry Stevens" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
@@ -783,6 +757,28 @@
                     </div>
                     
                     <div class="projects-grid">
+                        <a href="#project3" class="project-card" data-project-id="project3">
+                            <div class="project-image">
+                                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic senior design team photo" onerror="this.onerror=null; this.src='MechProject/coverImage.jpg';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="project-content">
+                                <h3>Next Generation Fluid Management System</h3>
+                                <p>For my ongoing senior capstone project sponsored by biomedical device company Hologic Inc., my team is developing a next-generation fluid management system to improve surgical outcomes and patient safety</p>
+                                <div class="project-tags"></div>
+                            </div>
+                        </a>
+
+                        <a href="#project6" class="project-card" data-project-id="project6">
+                            <div class="project-image">
+                                <img src="pongBot/CoverPhoto.jpg" alt="Autonomous Cup Pong Robot cover photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                            </div>
+                            <div class="project-content">
+                                <h3>Autonomous Cup Pong Robot</h3>
+                                <p>A robot that can autonomously play cup pong against a human opponent. Uses computer vision and embedded control systems to select a target and launch a ping pong ball. Developed with a team of 6 engineers.</p>
+                                <div class="project-tags"></div>
+                            </div>
+                        </a>
+
                         <a href="#project1" class="project-card" data-project-id="project1">
                             <div class="project-image">
                                 <video muted loop playsinline poster="MechProject/coverVideoPoster.jpg">
@@ -804,17 +800,6 @@
                             <div class="project-content">
                                 <h3>Nerf Gun Reverse Engineering and DFM Optimization</h3>
                                 <p>Reverse engineering and redesign of a consumer product to identify manufacturing and assembly inefficiencies. Applied DFA metrics and economic analysis to implement targeted design changes and produce a complete, dimensioned drawing package.</p>
-                                <div class="project-tags"></div>
-                            </div>
-                        </a>
-
-                        <a href="#project3" class="project-card" data-project-id="project3">
-                            <div class="project-image">
-                                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic senior design team photo" onerror="this.onerror=null; this.src='MechProject/coverImage.jpg';" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                            </div>
-                            <div class="project-content">
-                                <h3>Next Generation Fluid Management System</h3>
-                                <p>For my ongoing senior capstone project sponsored by biomedical device company Hologic Inc., my team is developing a next-generation fluid management system to improve surgical outcomes and patient safety</p>
                                 <div class="project-tags"></div>
                             </div>
                         </a>
@@ -851,38 +836,38 @@
         <div class="container">
             <div class="project-navigation">
                 <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
-                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project1 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+                <a href="#" class="project-nav-link" onclick="return scrollToProjectGallery('project1');">Project Gallery ↓</a>
             </div>
             
             <h2>Autonomous Racing Robot</h2>
             <div class="project-tags"></div>
 
             <div class="project-hero">
-                <video muted loop playsinline controls autoplay>
+                <video muted loop playsinline controls>
                     <source src="MechProject/coverVideo.mp4" type="video/mp4">
                     Your browser doesn't support video.
                 </video>
             </div>
 
             <!-- Project Stats Section -->
-            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
-                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+            <div class="project-stats">
+                <h3>Project Stats</h3>
+                <div class="project-stats-grid">
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">6</div>
-                        <div style="color: #666; font-size: 0.9rem;">Team Members</div>
+                        <div class="project-stat-value">6</div>
+                        <div class="project-stat-label">Team Members</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">$300</div>
-                        <div style="color: #666; font-size: 0.9rem;">Budget</div>
+                        <div class="project-stat-value">$300</div>
+                        <div class="project-stat-label">Budget</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">14 weeks</div>
-                        <div style="color: #666; font-size: 0.9rem;">Timeline</div>
+                        <div class="project-stat-value">14 weeks</div>
+                        <div class="project-stat-label">Timeline</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">3</div>
-                        <div style="color: #666; font-size: 0.9rem;">Microcontrollers</div>
+                        <div class="project-stat-value">3</div>
+                        <div class="project-stat-label">Microcontrollers</div>
                     </div>
                 </div>
             </div>
@@ -915,7 +900,7 @@
                 </figure>
                 <figure class="gallery-item">
                     <div class="gallery-thumb">
-                        <img src="MechProject/robotFullCad.png" alt="CAD model of robot" data-caption="We desiged the robot's mechanical systems in SolidWorks prior to manufacuturing." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="MechProject/robotFullCad.png" alt="CAD model of robot" data-caption="We designed the robot's mechanical systems in SolidWorks prior to manufacturing." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                     </div>
                     <figcaption>CAD model of robot</figcaption>
                 </figure>
@@ -945,42 +930,42 @@
         <div class="container">
             <div class="project-navigation">
                 <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
-                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project2 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+                <a href="#" class="project-nav-link" onclick="return scrollToProjectGallery('project2');">Project Gallery ↓</a>
             </div>
             
             <h2>Nerf Gun Reverse Engineering and DFM Optimization</h2>
             <div class="project-tags"></div>
 
             <div class="project-hero">
-                <img src="NerfGunProject/coverImage.png" alt="Nerf blaster reverse engineering cover" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <img src="NerfGunProject/coverImage.png" alt="Nerf blaster reverse engineering cover">
             </div>
 
             <!-- Project Stats Section -->
-            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
-                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+            <div class="project-stats">
+                <h3>Project Stats</h3>
+                <div class="project-stats-grid">
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">1</div>
-                        <div style="color: #666; font-size: 0.9rem;">Individual Project</div>
+                        <div class="project-stat-value">1</div>
+                        <div class="project-stat-label">Individual Project</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">~$150</div>
-                        <div style="color: #666; font-size: 0.9rem;">Budget</div>
+                        <div class="project-stat-value">~$150</div>
+                        <div class="project-stat-label">Budget</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">8 weeks</div>
-                        <div style="color: #666; font-size: 0.9rem;">Timeline</div>
+                        <div class="project-stat-value">8 weeks</div>
+                        <div class="project-stat-label">Timeline</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">5</div>
-                        <div style="color: #666; font-size: 0.9rem;">CAD Assemblies</div>
+                        <div class="project-stat-value">5</div>
+                        <div class="project-stat-label">CAD Assemblies</div>
                     </div>
                 </div>
             </div>
 
             <div class="project-description">
-                <p>This project focused on the reverse engineering and redesign of a consumer product to identify inefficiencies in manufacturing and assembly and implement targeted design-for-assembly (DFA) improvements. The work emphasized a structured workflow that moved from system-level understanding to part-level analysis, allowing design changes to be driven by measurable assembly and economic metrics rather than intuition alone.</p>
-                <p>The process began with a complete teardown and decomposition of the product into functional subsystems, supported by black box and glass box diagrams to map inputs, outputs, and internal energy transfer. Fishbone diagrams were used to organize parts and subassemblies, after which the entire product was reconstructed as a detailed 3D CAD model. A complete engineering drawing package was generated, including fully dimensioned drawings for every component, enabling clear communication of design intent and manufacturability.</p>
+                <p>This project involved the reverse engineering and redesign of a consumer product to identify inefficiencies in manufacturing and assembly and implement targeted design-for-assembly (DFA) improvements. The work emphasized a structured workflow that moved from system-level understanding to part-level analysis, allowing design changes to be driven by measurable assembly and economic metrics rather than intuition alone.</p>
+                <p>The process began with a complete teardown and decomposition of the product into functional subsystems, supported by black box and glass box diagrams to map inputs, outputs, and internal energy transfer. Fishbone diagrams were used to organize parts and subassemblies, after which the entire product was reconstructed as a detailed 3D CAD model. A complete engineering drawing package was generated, including fully dimensioned drawings for every component, enabling clear communication of design intent and manufacturability.</p>>
                 <p>Using this model, DFA metrics such as part count, part variety, assembly difficulty, and error risk were evaluated to identify the highest-impact opportunities for improvement. Design changes were then implemented to directly target these metrics, including error-proofing critical assemblies, simplifying the firing mechanism to reduce assembly steps and tolerance stack-up, and standardizing fasteners to reduce part variety and handling complexity. The resulting designs demonstrated clear improvements in assembly efficiency and projected manufacturing cost, illustrating how data-driven DFA analysis can guide effective mechanical design decisions.</p>
             </div>
 
@@ -1000,7 +985,7 @@
                 </figure>
                 <figure class="gallery-item">
                     <div class="gallery-thumb">
-                        <img src="NerfGunProject/assemblyDrawing.png" alt="Assembly drawing" data-caption="This is an excerpt from the drawing package we produced to comunicate the Nerf gun design. The numbers refer to specific components in the Bill of Materials" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="NerfGunProject/assemblyDrawing.png" alt="Assembly drawing" data-caption="This is an excerpt from the drawing package we produced to communicate the Nerf gun design. The numbers refer to specific components in the Bill of Materials" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                     </div>
                     <figcaption>Exploded Assembly Drawing</figcaption>
                 </figure>
@@ -1012,7 +997,7 @@
                 </figure>
                 <figure class="gallery-item">
                     <div class="gallery-thumb">
-                        <img src="NerfGunProject/leversRedesign.png" alt="Firing mechanism" data-caption="Originally, the two levers that transfer force from the trigger to the firing mechanism could easily be installed uside down. The redesign added material to make the incorrect installation impossible." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="NerfGunProject/leversRedesign.png" alt="Firing mechanism" data-caption="Originally, the two levers that transfer force from the trigger to the firing mechanism could easily be installed upside down. The redesign added material to make the incorrect installation impossible." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                     </div>
                     <figcaption>Trigger Mechanism Redesign</figcaption>
                 </figure>
@@ -1030,49 +1015,45 @@
         <div class="container">
             <div class="project-navigation">
                 <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
-                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project3 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+                <a href="#" class="project-nav-link" onclick="return scrollToProjectGallery('project3');">Project Gallery ↓</a>
             </div>
             
             <h2>Hologic Inc. Senior Design Project</h2>
             <div class="project-tags"></div>
 
             <div class="project-hero">
-                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic senior design team" style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic senior design team">
             </div>
 
             <!-- Project Stats Section -->
-            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
-                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+            <div class="project-stats">
+                <h3>Project Stats</h3>
+                <div class="project-stats-grid">
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">10</div>
-                        <div style="color: #666; font-size: 0.9rem;">Team Members</div>
+                        <div class="project-stat-value">10</div>
+                        <div class="project-stat-label">Team Members</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">Industry</div>
-                        <div style="color: #666; font-size: 0.9rem;">Sponsorship</div>
+                        <div class="project-stat-value"><img src="HologicSeniorDesign/hologicLogo.png" alt="Hologic Inc. logo" style="max-height: 90px; max-width: 90px; object-fit: contain;"></div>
+                        <div class="project-stat-label">Industry Sponsor</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">1 year</div>
-                        <div style="color: #666; font-size: 0.9rem;">Duration</div>
+                        <div class="project-stat-value">1 year</div>
+                        <div class="project-stat-label">Duration</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">Medical</div>
-                        <div style="color: #666; font-size: 0.9rem;">Device Class</div>
+                        <div class="project-stat-value">2</div>
+                        <div class="project-stat-label">Design Awards Won</div>
                     </div>
                 </div>
             </div>
 
-            <div style="background: #f5f5f5; border-left: 4px solid #0066cc; padding: 1.5rem; margin: 3rem auto; border-radius: 4px; max-width: 800px;">
-                <strong style="display: block; margin-bottom: 0.75rem;">Note on Project Details</strong>
-                <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">This project is sponsored by Hologic Inc., a leading biomedical device company. Design details, technical specifications, and implementation are protected as trade secrets under sponsorship agreements and are not publicly disclosed. This page outlines the problem and scope of work; additional technical information is confidential.</p>
-            </div>
 
             <div class="project-description">
-                <p>Hologic Inc. has contracted my senior design team through <strong>Design Center Colorado</strong>, an embedded consulting program at CU Boulder, to develop a prototype for the next generation of the Fluent Pro system. This medical device manages intrauterine distension during hysteroscopic surgical procedures, enabling surgeons to maintain a clear view of the surgical site while supporting precise and safe tissue resection.</p>
-                <p>Our team is responsible for researching, designing, and manufacturing a prototype solution to address opportunities for improved fluid control stability and more accurate real-time volume measurement, while adhering to the constraints of medical device design controls and regulatory requirements.</p>
-                <p>I serve as the <strong>systems engineer</strong> for the project, with primary responsibility for requirements flow-down, system architecture, and interface definition across mechanical, electrical, and software subsystems. My work has included component specification and trade studies, detailed CAD development, and the creation of fully dimensioned engineering drawings for manufactured components. The project operates in a professional consulting environment, with formal documentation, design reviews, and technical presentations delivered directly to industry stakeholders.</p>
-
+                <p>Hologic Inc. contracted my senior design team through <strong>Design Center Colorado</strong>, an embedded consulting program at CU Boulder, to develop a prototype fluid management system for the next generation of the Fluent Pro system. Our team won both the judges <strong>Distinction in Design</strong> award and the <strong>People's Choice</strong> award at the 2026 CU Boulder Engineering Expo for our work on this project.</p>
+                <p>This device manages uterine distension during hysteroscopic surgical procedures, enabling surgeons to maintain a clear view of the surgical site while supporting precise and safe tissue resection.</p>
+                <p>Our team was responsible for researching, designing, and manufacturing a prototype solution to the pulsations in fluid flow introduced by the current peristaltic pump system, as well as exploring novel approaches to monitoring fluid volume delivered. The project has involved detailed research into fluid dynamics, control systems, and medical device design, with a focus on developing innovative solutions within the unique constraints of the medical device industry.</p>>
+                <p>I served as the <strong>systems engineer</strong> for the project, with primary responsibility for requirements flow-down, system architecture, and interface definition across mechanical, electrical, and software subsystems. My work included spearheading the technical development of the project, from initial concept, through mechanical design and software and controls implementation. The project operated in a professional consulting environment, with formal documentation, design reviews, and technical presentations delivered directly to industry stakeholders.</p>
             </div>
 
             <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
@@ -1083,17 +1064,133 @@
                     </div>
                     <figcaption>Senior design team</figcaption>
                 </figure>
+
                 <figure class="gallery-item">
                     <div class="gallery-thumb">
                         <img src="HologicSeniorDesign/FluentProductImage.jpg" alt="Existing Hologic Fluent fluid management system" data-caption="The existing Hologic Fluent fluid management system, which we seek to improve through our senior design project (Image © Hologic Inc., used for reference)" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                     </div>
                     <figcaption>Existing Hologic Fluent fluid management system</figcaption>
                 </figure>
+
+                <!-- Project spec table removed (no longer available) -->
+
                 <figure class="gallery-item">
                     <div class="gallery-thumb">
-                        <img src="HologicSeniorDesign/redactedSpecTable.png" alt="Redacted project specifications table" data-caption="Project specifications and scope summary (redacted per trade secret protections)." style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <img src="HologicSeniorDesign/awardsPhoto.jpg" alt="Awards at Expo" data-caption="Team receiving awards at CU Boulder Engineering Expo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                     </div>
-                    <figcaption>Project specifications summary</figcaption>
+                    <figcaption>Expo awards</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="HologicSeniorDesign/Team18_Hologic_ExpoPoster.jpg" alt="Expo poster" data-caption="Expo poster summarizing our project and results" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Expo poster</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="HologicSeniorDesign/GUI_thumb.jpg" alt="Demo showing GUI and system walkthrough" data-caption="Demo showing GUI and system walkthrough" data-video-src="HologicSeniorDesign/Final Final Video new GUI.mp4" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg></div></div>
+                    </div>
+                    <figcaption>Demo — GUI and system walkthrough</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="HologicSeniorDesign/Flow_thumb.jpg" alt="Flow comparison video" data-caption="Flow comparison video" data-video-src="HologicSeniorDesign/Expo Flow Comparison V1 Edited.mp4" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                        <div class="play-overlay"><div class="play-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg></div></div>
+                    </div>
+                    <figcaption>Flow comparison video</figcaption>
+                </figure>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="project6" class="project-detail">
+        <div class="container">
+            <div class="project-navigation">
+                <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
+                <a href="#" class="project-nav-link" onclick="return scrollToProjectGallery('project6');">Project Gallery ↓</a>
+            </div>
+
+            <h2>Autonomous Cup Pong Robot</h2>
+            <div class="project-tags"></div>
+
+            <div class="project-hero">
+                <img src="pongBot/CoverPhoto.jpg" alt="Autonomous Cup Pong Robot" style="width: 100%; border-radius: 12px; display: block;">
+            </div>
+
+            <!-- Project Stats Section -->
+            <div class="project-stats">
+                <h3>Project Stats</h3>
+                <div class="project-stats-grid">
+                    <div>
+                        <div class="project-stat-value">6</div>
+                        <div class="project-stat-label">Team Members</div>
+                    </div>
+                    <div>
+                        <div class="project-stat-value">$1,200</div>
+                        <div class="project-stat-label">Budget</div>
+                    </div>
+                    <div>
+                        <div class="project-stat-value">14 weeks</div>
+                        <div class="project-stat-label">Timeline</div>
+                    </div>
+                    <div>
+                        <div class="project-stat-value">6</div>
+                        <div class="project-stat-label">Motors</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-description">
+                <p>
+                    This project was completed as part of Mechatronics and Robotics 2, a one-semester, lab-based course centered on the design and construction of autonomous electromechanical systems. Working within a team of six and a total project budget of approximately $1,200, we developed an automated cup pong launcher capable of detecting cups and autonomously launching ping pong balls into them using computer vision and closed-loop motion control.
+                </p>
+                <p>
+                    The system combined mechanical design, embedded systems, and machine vision into a two-axis articulated launcher platform. A Raspberry Pi 5 handled computer vision and high-level targeting logic using OpenCV-based cup detection, while a Raspberry Pi Pico controlled the real-time actuation hardware, including stepper motors, brushless flywheel motors, and servo-driven feeding mechanisms. Communication between the controllers was implemented over serial, while motor subsystems utilized both PWM and DSHOT protocols for precise control.
+                </p>
+                <p>
+                    The launcher itself used dual TPU flywheels powered by repurposed drone motors to accelerate the balls, while a custom multi-stage feeding system ensured consistent loading conditions for repeatable trajectories. After multiple design iterations, the final feeder architecture combined a stepper-driven indexing system with a servo-actuated rack-and-pinion mechanism to improve firing consistency and eliminate common misfeed conditions. Mechanical components were designed in SolidWorks and fabricated using a combination of 3D-printed PLA, machined aluminum, and sheet metal structures.
+                </p>
+                <p>
+                    A major focus of the project was iterative systems engineering and hardware refinement. Early PLA structural components proved insufficiently rigid under motor loads and vibration, leading to a redesign using 5052 aluminum sheet metal and machined 6061 bearing housings. Similarly, several sensing and feeding approaches were abandoned and redesigned during testing to improve reliability and repeatability, reinforcing the importance of subsystem integration, manufacturability, and design iteration in complex electromechanical systems.
+                </p>
+            </div>
+
+            <h3 class="gallery-header" style="margin-bottom: 1.5rem; font-size: 1.8rem;">Project Gallery</h3>
+            <div class="project-gallery">
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="pongBot/elecBox.JPG" alt="Electronics box" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Electronics Box</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="pongBot/firingMechanism.jpg" alt="Firing mechanism" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Firing Mechanism</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="pongBot/fullSystemPhoto.JPG" alt="Full system" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Full System</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="pongBot/pcbLayout.png" alt="PCB layout" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>PCB Layout</figcaption>
+                </figure>
+                <figure class="gallery-item">
+                    <div class="gallery-thumb">
+                        <img src="pongBot/visionExample.jpg" alt="Vision example" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <figcaption>Vision System Example</figcaption>
                 </figure>
             </div>
         </div>
@@ -1103,35 +1200,35 @@
         <div class="container">
             <div class="project-navigation">
                 <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
-                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project4 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+                <a href="#" class="project-nav-link" onclick="return scrollToProjectGallery('project4');">Project Gallery ↓</a>
             </div>
             
             <h2>Drill-Powered Bicycle</h2>
             <div class="project-tags"></div>
 
             <div class="project-hero">
-                <img src="CompDBike/coverPhoto.jpg" alt="CompDBike project cover" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
+                <img src="CompDBike/coverPhoto.jpg" alt="CompDBike project cover">
             </div>
 
             <!-- Project Stats Section -->
-            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
-                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+            <div class="project-stats">
+                <h3>Project Stats</h3>
+                <div class="project-stats-grid">
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">6</div>
-                        <div style="color: #666; font-size: 0.9rem;">Team Members</div>
+                        <div class="project-stat-value">6</div>
+                        <div class="project-stat-label">Team Members</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">~$3,000</div>
-                        <div style="color: #666; font-size: 0.9rem;">Budget</div>
+                        <div class="project-stat-value">~$3,000</div>
+                        <div class="project-stat-label">Budget</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">12 weeks</div>
-                        <div style="color: #666; font-size: 0.9rem;">Timeline</div>
+                        <div class="project-stat-value">12 weeks</div>
+                        <div class="project-stat-label">Timeline</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">50+</div>
-                        <div style="color: #666; font-size: 0.9rem;">Welds</div>
+                        <div class="project-stat-value">50+</div>
+                        <div class="project-stat-label">Welds</div>
                     </div>
                 </div>
             </div>
@@ -1182,7 +1279,7 @@
         <div class="container">
             <div class="project-navigation">
                 <a href="#" class="project-nav-link" onclick="showHome(); scrollToProjects(); return false;">← Back to Projects</a>
-                <a href="#" class="project-nav-link" onclick="const header = document.querySelector('#project5 .gallery-header'); const navHeight = document.querySelector('nav').offsetHeight; window.scrollTo({top: header.offsetTop - navHeight - 20, behavior: 'smooth'}); return false;">Project Gallery ↓</a>
+                <a href="#" class="project-nav-link" onclick="return scrollToProjectGallery('project5');">Project Gallery ↓</a>
             </div>
             
             <h2>This Portfolio Website</h2>
@@ -1195,34 +1292,34 @@
                 <span class="tag">SEO</span>
             </div>
 
-            <div class="project-hero" style="overflow: hidden; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                <img src="website/websiteHomepage.png" alt="Website homepage screenshot" style="width: 100%; height: auto; display: block;">
+            <div class="project-hero">
+                <img src="website/websiteHomepage.png" alt="Website homepage screenshot">
             </div>
 
-            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 1.5rem; margin: 3rem auto; border-radius: 4px; max-width: 800px;">
-                <strong style="display: block; margin-bottom: 0.75rem;">Note on AI-Assisted Development</strong>
-                <p style="margin: 0; font-size: 0.95rem; color: #555; line-height: 1.6;">Much of this website was built using AI-assisted "vibe-coding" workflows. I want to acknowledge that while these tools are incredibly useful in reducing the barrier to entry for new developers in low-stakes contexts like this one, I would not consider myself a web developer, and would not rely on these tools as a substitute for real expertise and human judgment. Moreover, I want to acknowledge the very real environmental and economic costs currently associated with these tools.</p>
+            <div class="project-note">
+                <strong>Note on AI-Assisted Development</strong>
+                <p style="margin: 0; font-size: 0.95rem; line-height: 1.6;">Much of this website was built using AI-assisted "vibe-coding" workflows. I want to acknowledge that while these tools are incredibly useful in reducing the barrier to entry for new developers in low-stakes contexts like this one, I would not consider myself a web developer, and would not rely on these tools as a substitute for real expertise and human judgment. Moreover, I want to acknowledge the very real environmental and economic costs currently associated with these tools.</p>
             </div>
 
             <!-- Meta Stats Section -->
-            <div style="max-width: 800px; margin: 3rem auto; padding: 2rem; background: #f8f9fa; border-radius: 12px; border-left: 4px solid #0066cc;">
-                <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; color: #1a1a1a;">Project Stats</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+            <div class="project-stats">
+                <h3>Project Stats</h3>
+                <div class="project-stats-grid">
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">2</div>
-                        <div style="color: #666; font-size: 0.9rem;">HTML Files</div>
+                        <div class="project-stat-value">2</div>
+                        <div class="project-stat-label">HTML Files</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">0</div>
-                        <div style="color: #666; font-size: 0.9rem;">Dependencies</div>
+                        <div class="project-stat-value">0</div>
+                        <div class="project-stat-label">Dependencies</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">~2000</div>
-                        <div style="color: #666; font-size: 0.9rem;">Lines of Code</div>
+                        <div class="project-stat-value">~2000</div>
+                        <div class="project-stat-label">Lines of Code</div>
                     </div>
                     <div>
-                        <div style="font-size: 2rem; font-weight: 600; color: #0066cc;">$0</div>
-                        <div style="color: #666; font-size: 0.9rem;">Total Cost</div>
+                        <div class="project-stat-value">$0</div>
+                        <div class="project-stat-label">Total Cost</div>
                     </div>
                 </div>
             </div>
@@ -1251,163 +1348,6 @@
         </div>
     </div>
 
-    <!-- Ribbon Bar -->
-    <div id="ribbonBar" class="ribbon-bar">
-        <div class="ribbon-container">
-            <div class="ribbon-label"></div>
-            <div class="ribbon-gallery">
-                <div class="ribbon-gallery-track">
-                    <!-- First set of images -->
-                    <div class="ribbon-item video-thumb" onclick="navigateToProject('project1')" title="Autonomous Robot - Video">
-                        <img src="MechProject/coverVideoPoster.jpg" alt="Robot Video">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Closeup">
-                        <img src="MechProject/closeupImage.jpg" alt="Robot Closeup">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Jump">
-                        <img src="MechProject/coverImage.jpg" alt="Robot Jump">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - CAD">
-                        <img src="MechProject/robotFullCad.png" alt="Robot CAD">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Collection System">
-                        <img src="MechProject/collectionCAD.png" alt="Collection CAD">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Circuit">
-                        <img src="MechProject/circuitDiagram.png" alt="Circuit Diagram">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Course">
-                        <img src="MechProject/courseSchematic.png" alt="Course Schematic">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Cover">
-                        <img src="NerfGunProject/coverImage.png" alt="Nerf Gun">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Internals">
-                        <img src="NerfGunProject/internalsRendering.png" alt="Nerf Internals">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Assembly Drawing">
-                        <img src="NerfGunProject/assemblyDrawing.png" alt="Assembly Drawing">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Assembly Redesign">
-                        <img src="NerfGunProject/assemblyRedesign.png" alt="Assembly Redesign">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Levers Redesign">
-                        <img src="NerfGunProject/leversRedesign.png" alt="Levers Redesign">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - DFA Analysis">
-                        <img src="NerfGunProject/DFAanalysis.png" alt="DFA Analysis">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Team">
-                        <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic Team">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Fluent System">
-                        <img src="HologicSeniorDesign/FluentProductImage.jpg" alt="Fluent System">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Specifications">
-                        <img src="HologicSeniorDesign/redactedSpecTable.png" alt="Specifications">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Cover">
-                        <img src="CompDBike/CoverPhoto.jpg" alt="CompDBike">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Team">
-                        <img src="CompDBike/teamPhoto.png" alt="Bike Team">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Assembly">
-                        <img src="CompDBike/AssemblyProcess.JPG" alt="Assembly">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Welding">
-                        <img src="CompDBike/Welding.jpg" alt="Welding">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Pillow Blocks">
-                        <img src="CompDBike/pollowBlocksDrawing.png" alt="Pillow Blocks">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Action Shot">
-                        <img src="CompDBike/TricksPhoto.jpg" alt="Bike Action">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project5')" title="Website - Homepage">
-                        <img src="website/websiteHomepage.png" alt="Website Homepage">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project5')" title="Website - Development">
-                        <img src="website/codingEnvironment.png" alt="Website Development">
-                    </div>
-                    <div class="ribbon-item video-thumb" onclick="navigateToProject('project1')" title="Autonomous Robot - Video">
-                        <img src="MechProject/coverVideoPoster.jpg" alt="Robot Video">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Closeup">
-                        <img src="MechProject/closeupImage.jpg" alt="Robot Closeup">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Jump">
-                        <img src="MechProject/coverImage.jpg" alt="Robot Jump">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - CAD">
-                        <img src="MechProject/robotFullCad.png" alt="Robot CAD">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Collection System">
-                        <img src="MechProject/collectionCAD.png" alt="Collection CAD">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Circuit">
-                        <img src="MechProject/circuitDiagram.png" alt="Circuit Diagram">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project1')" title="Autonomous Robot - Course">
-                        <img src="MechProject/courseSchematic.png" alt="Course Schematic">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Cover">
-                        <img src="NerfGunProject/coverImage.png" alt="Nerf Gun">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Internals">
-                        <img src="NerfGunProject/internalsRendering.png" alt="Nerf Internals">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Assembly Drawing">
-                        <img src="NerfGunProject/assemblyDrawing.png" alt="Assembly Drawing">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Assembly Redesign">
-                        <img src="NerfGunProject/assemblyRedesign.png" alt="Assembly Redesign">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - Levers Redesign">
-                        <img src="NerfGunProject/leversRedesign.png" alt="Levers Redesign">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project2')" title="Nerf Gun - DFA Analysis">
-                        <img src="NerfGunProject/DFAanalysis.png" alt="DFA Analysis">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Team">
-                        <img src="HologicSeniorDesign/teamPhoto.jpg" alt="Hologic Team">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Fluent System">
-                        <img src="HologicSeniorDesign/FluentProductImage.jpg" alt="Fluent System">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project3')" title="Hologic - Specifications">
-                        <img src="HologicSeniorDesign/redactedSpecTable.png" alt="Specifications">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Cover">
-                        <img src="CompDBike/CoverPhoto.jpg" alt="CompDBike">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Team">
-                        <img src="CompDBike/teamPhoto.png" alt="Bike Team">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Assembly">
-                        <img src="CompDBike/AssemblyProcess.JPG" alt="Assembly">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Welding">
-                        <img src="CompDBike/Welding.jpg" alt="Welding">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Pillow Blocks">
-                        <img src="CompDBike/pollowBlocksDrawing.png" alt="Pillow Blocks">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project4')" title="CompDBike - Action Shot">
-                        <img src="CompDBike/TricksPhoto.jpg" alt="Bike Action">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project5')" title="Website - Homepage">
-                        <img src="website/websiteHomepage.png" alt="Website Homepage">
-                    </div>
-                    <div class="ribbon-item" onclick="navigateToProject('project5')" title="Website - Development">
-                        <img src="website/codingEnvironment.png" alt="Website Development">
-                    </div>
-                </div>
-            </div>
-            <button class="ribbon-close" onclick="closeRibbon()" title="Close">&times;</button>
-        </div>
-    </div>
-
     <footer>
         <div class="container">
             <p>&copy; 2026 Henry Stevens. All rights reserved.</p>
@@ -1425,7 +1365,7 @@
         <button class="lightbox-prev" onclick="changeImage(-1)">&#10094;</button>
         <button class="lightbox-next" onclick="changeImage(1)">&#10095;</button>
         <div class="lightbox-content">
-            <img id="lightbox-image" src="" alt="">
+            <div id="lightbox-media"></div>
             <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>
     </div>
@@ -1444,85 +1384,16 @@
             }
         }
 
-        // Ribbon Bar Functions
-        function navigateToProject(projectId) {
-            const projectElement = document.getElementById(projectId);
-            if (projectElement) {
-                showProject(projectId);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        function scrollToProjectGallery(projectId) {
+            const header = document.querySelector(`#${projectId} .gallery-header`);
+            const navHeight = document.querySelector('nav').offsetHeight;
+            if (header) {
+                window.scrollTo({
+                    top: header.offsetTop - navHeight - 20,
+                    behavior: 'smooth'
+                });
             }
-        }
-
-        function hideRibbonForProject() {
-            const ribbon = document.getElementById('ribbonBar');
-            if (ribbon) {
-                ribbon.classList.add('hidden');
-            }
-        }
-
-        function closeRibbon() {
-            const ribbon = document.getElementById('ribbonBar');
-            if (ribbon) {
-                ribbon.classList.add('hidden');
-            }
-        }
-
-        // Handle scroll to reposition ribbon near footer
-        window.addEventListener('scroll', function() {
-            const ribbon = document.getElementById('ribbonBar');
-            const footer = document.querySelector('footer');
-            
-            if (!ribbon || !footer) return;
-            
-            const activeProject = document.querySelector('.project-detail.active');
-            if (activeProject) return; // Don't show ribbon on project pages
-            
-            const footerRect = footer.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            
-            // If footer is visible or close (within viewport), reposition ribbon
-            if (footerRect.top < viewportHeight + 50) { // 50px buffer
-                ribbon.classList.add('at-footer');
-                ribbon.style.position = 'relative';
-                ribbon.style.bottom = 'auto';
-            } else {
-                // Footer is far away, keep ribbon fixed at bottom
-                ribbon.classList.remove('at-footer');
-                ribbon.style.position = 'fixed';
-                ribbon.style.bottom = '0';
-            }
-        });
-
-        // Infinite scroll for ribbon gallery
-        const ribbonGallery = document.querySelector('.ribbon-gallery');
-        if (ribbonGallery) {
-            let isAdjusting = false;
-            
-            ribbonGallery.addEventListener('scroll', function() {
-                if (isAdjusting) return;
-                
-                const scrollWidth = this.scrollWidth;
-                const clientWidth = this.clientWidth;
-                const scrollLeft = this.scrollLeft;
-                const maxScroll = scrollWidth - clientWidth;
-                const halfWidth = scrollWidth / 2;
-                
-                // When at the very end, jump back to middle
-                if (scrollLeft >= maxScroll - 1) {
-                    isAdjusting = true;
-                    this.scrollLeft = halfWidth - clientWidth;
-                    setTimeout(() => isAdjusting = false, 50);
-                }
-                // When at the very beginning, jump to middle
-                else if (scrollLeft <= 1) {
-                    isAdjusting = true;
-                    this.scrollLeft = halfWidth;
-                    setTimeout(() => isAdjusting = false, 50);
-                }
-            });
-            
-            // Start at the middle position
-            ribbonGallery.scrollLeft = ribbonGallery.scrollWidth / 2;
+            return false;
         }
 
         // Single source of truth for project data
@@ -1530,11 +1401,14 @@
             project1: {
                 tags: ['Python', 'Rapid Prototyping', 'Sensor Integration', 'Raspberry Pi', 'Arduino', 'Motor Control', 'Power Management']
             },
+            project6: {
+                tags: ['Computer Vision', 'Mechanical Design', 'Systems Engineering', 'Beer Pong', 'Human-Machine Interaction', 'Design for Manufacturing']
+            },
             project2: {
-                tags: ['Design for Assembly', 'Reverse Engineering' , 'CAD', 'Mechanical Design', 'Technical Drawing','Engineering Economics']
+                tags: ['Design for Assembly', 'Reverse Engineering', 'CAD', 'Mechanical Design', 'Technical Drawing', 'Engineering Economics']
             },
             project3: {
-                tags: ['Biomedical Devices', 'New Product Development', 'CAD', 'Mechanical Design' , 'Feedback Systems','Design Reviews','Systems Engineering']
+                tags: ['Biomedical Devices', 'New Product Development', 'CAD', 'Mechanical Design', 'Feedback Systems', 'Design Reviews', 'Systems Engineering']
             },
             project4: {
                 tags: ['Welding', 'CAD', 'Mechanical Design', 'Structural Analysis', 'Fabrication', 'Drivetrain Design']
@@ -1571,21 +1445,8 @@
                 el.classList.remove('active');
             });
             document.getElementById(projectId).classList.add('active');
-            // Hide ribbon when showing project
-            const ribbon = document.getElementById('ribbonBar');
-            if (ribbon) {
-                ribbon.classList.add('hidden');
-            }
             window.scrollTo(0, 0);
             renderProjectTags(projectId);
-            
-            // Autoplay video for project1
-            if (projectId === 'project1') {
-                const video = document.querySelector('#project1 video');
-                if (video) {
-                    video.play().catch(e => console.log('Video autoplay failed:', e));
-                }
-            }
         }
 
         function showHome() {
@@ -1593,14 +1454,6 @@
             document.querySelectorAll('.project-detail').forEach(el => {
                 el.classList.remove('active');
             });
-            // Show ribbon when returning home
-            const ribbon = document.getElementById('ribbonBar');
-            if (ribbon) {
-                ribbon.classList.remove('hidden');
-                ribbon.classList.remove('at-footer');
-                ribbon.style.position = 'fixed';
-                ribbon.style.bottom = '0';
-            }
             // Always scroll smoothly to top
             window.scrollTo({
                 top: 0,
@@ -1638,59 +1491,7 @@
             }
         }
 
-        // Video hover functionality
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.project-image').forEach(projectImage => {
-                const video = projectImage.querySelector('video');
-                if (!video) {
-                    return;
-                }
-
-                let touchHoldTimer = null;
-                let isHolding = false;
-
-                // Desktop: hover to play
-                projectImage.addEventListener('mouseenter', function() {
-                    video.play().catch(function(error) {
-                        console.log('Video play failed:', error);
-                    });
-                });
-
-                projectImage.addEventListener('mouseleave', function() {
-                    video.pause();
-                    video.currentTime = 0; // Reset to beginning
-                });
-
-                // Mobile: touch and hold to play
-                projectImage.addEventListener('touchstart', function(e) {
-                    isHolding = true;
-                    touchHoldTimer = setTimeout(function() {
-                        if (isHolding) {
-                            video.play().catch(function(error) {
-                                console.log('Video play failed:', error);
-                            });
-                        }
-                    }, 200); // Start playing after 200ms hold
-                });
-
-                projectImage.addEventListener('touchend', function(e) {
-                    isHolding = false;
-                    if (touchHoldTimer) {
-                        clearTimeout(touchHoldTimer);
-                    }
-                    video.pause();
-                    video.currentTime = 0; // Reset to beginning
-                });
-
-                projectImage.addEventListener('touchmove', function(e) {
-                    // Cancel if user is scrolling
-                    isHolding = false;
-                    if (touchHoldTimer) {
-                        clearTimeout(touchHoldTimer);
-                    }
-                });
-            });
-
             // Render tags for all projects from single source of truth
             Object.keys(projectData).forEach(renderProjectTags);
 
@@ -1714,63 +1515,118 @@
 
         // Lightbox functionality
         let currentImageIndex = 0;
-        let galleryImages = [];
+        let galleryItems = [];
 
-        function openLightbox(clickedImage) {
-            const gallery = clickedImage.closest('.project-gallery');
-            if (!gallery) {
-                return;
-            }
-            galleryImages = Array.from(gallery.querySelectorAll('.gallery-item img')).filter(img => img.src);
-            
-            if (galleryImages.length === 0) return;
-            
-            currentImageIndex = galleryImages.indexOf(clickedImage);
+        function openLightbox(clickedEl) {
+            const gallery = clickedEl.closest('.project-gallery');
+            if (!gallery) return;
+
+            const items = Array.from(gallery.querySelectorAll('.gallery-item img, .gallery-item video'));
+            galleryItems = items.map(node => {
+                if (node.tagName === 'VIDEO') {
+                    // get first source or src attribute
+                    const src = node.querySelector('source')?.getAttribute('src') || node.getAttribute('src');
+                    return {
+                        type: 'video',
+                        src: src || '',
+                        alt: node.getAttribute('alt') || '',
+                        caption: node.getAttribute('data-caption') || node.closest('figure')?.querySelector('figcaption')?.textContent?.trim() || ''
+                    };
+                } else {
+                    const videoSrc = node.getAttribute('data-video-src');
+                    return {
+                        type: videoSrc ? 'video' : 'image',
+                        src: videoSrc ? videoSrc : node.getAttribute('src'),
+                        alt: node.getAttribute('alt') || '',
+                        caption: node.getAttribute('data-caption') || node.closest('figure')?.querySelector('figcaption')?.textContent?.trim() || ''
+                    };
+                }
+            });
+
+            currentImageIndex = items.indexOf(clickedEl);
             if (currentImageIndex === -1) currentImageIndex = 0;
-            
-            updateLightboxImage();
+
+            updateLightboxMedia();
             document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
+            const mediaContainer = document.getElementById('lightbox-media');
+            const playing = mediaContainer.querySelector('video');
+            if (playing) {
+                playing.pause();
+                playing.src = '';
+            }
+            mediaContainer.innerHTML = '';
             document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
         }
 
         function changeImage(direction) {
+            if (!galleryItems.length) return;
             currentImageIndex += direction;
-            if (currentImageIndex < 0) {
-                currentImageIndex = galleryImages.length - 1;
-            } else if (currentImageIndex >= galleryImages.length) {
-                currentImageIndex = 0;
-            }
-            updateLightboxImage();
+            if (currentImageIndex < 0) currentImageIndex = galleryItems.length - 1;
+            if (currentImageIndex >= galleryItems.length) currentImageIndex = 0;
+            updateLightboxMedia();
         }
 
-        function updateLightboxImage() {
-            const lightboxImg = document.getElementById('lightbox-image');
-            lightboxImg.src = galleryImages[currentImageIndex].src;
-            lightboxImg.alt = galleryImages[currentImageIndex].alt;
+        function updateLightboxMedia() {
+            const mediaContainer = document.getElementById('lightbox-media');
+            mediaContainer.innerHTML = '';
+            const item = galleryItems[currentImageIndex];
             const captionEl = document.getElementById('lightbox-caption');
-            if (captionEl) {
-                const imgEl = galleryImages[currentImageIndex];
-                const fig = imgEl.closest('figure');
-                const figcaptionText = fig?.querySelector('figcaption')?.textContent?.trim();
-                const dataCaption = imgEl.getAttribute('data-caption');
-                captionEl.textContent = dataCaption || figcaptionText || imgEl.alt || '';
+            if (item.type === 'image') {
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.alt;
+                img.style.maxWidth = '90vw';
+                img.style.maxHeight = '75vh';
+                img.style.objectFit = 'contain';
+                img.style.borderRadius = '8px';
+                img.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
+                mediaContainer.appendChild(img);
+            } else if (item.type === 'video') {
+                const vid = document.createElement('video');
+                vid.src = encodeURI(item.src);
+                vid.controls = true;
+                vid.autoplay = true;
+                vid.style.maxWidth = '90vw';
+                vid.style.maxHeight = '75vh';
+                vid.style.objectFit = 'contain';
+                vid.style.borderRadius = '8px';
+                vid.style.background = '#000';
+                mediaContainer.appendChild(vid);
+                // ensure video stops when lightbox closed via overlay click or close button
+                vid.addEventListener('ended', () => {
+                    // pause and leave poster visible
+                    vid.pause();
+                });
             }
+            if (captionEl) captionEl.textContent = item.caption || '';
         }
 
         // Initialize gallery click handlers
         document.addEventListener('DOMContentLoaded', function() {
             // ... existing code ...
 
-            // Add click handlers to gallery images
+            // Add click handlers to gallery items (img and video thumbnails)
             document.addEventListener('click', function(e) {
-                if (e.target.closest('.gallery-item img')) {
-                    openLightbox(e.target);
-                }
+                const el = e.target.closest('.gallery-item img, .gallery-item video');
+                if (!el) return;
+                const gallery = el.closest('.project-gallery');
+                if (!gallery) return;
+                openLightbox(el);
+            });
+
+            // Ensure thumbnail videos do not autoplay in-gallery
+            // (Thumbnails are now generated images, so this block is technically a no-op but safe to keep)
+            const thumbVideos = Array.from(document.querySelectorAll('.thumb-video'));
+            thumbVideos.forEach(tv => {
+                tv.controls = false;
+                tv.addEventListener('play', function(e) {
+                    try { e.target.pause(); e.target.currentTime = 0; } catch (err) {}
+                });
             });
 
             // Keyboard navigation
@@ -1800,3 +1656,4 @@
     </script>
 </body>
 </html>
+
